@@ -15,7 +15,7 @@ final class SimulatedCameraService: CameraControlling {
     func stop() async { onRunningChange?(false) }
     func attachPreview(_ layer: AVCaptureVideoPreviewLayer) {}
 
-    func capture() async throws -> CapturedPhoto {
+    func capture(flash: Bool) async throws -> CapturedPhoto {
         let portrait = shootsPortrait
         shootsPortrait = false
         let size = portrait ? CGSize(width: 1512, height: 2016) : CGSize(width: 2016, height: 1512)

@@ -58,7 +58,7 @@ final class CameraService: CameraControlling {
         makeRotationObserverIfReady()
     }
 
-    func capture() async throws -> CapturedPhoto {
+    func capture(flash: Bool) async throws -> CapturedPhoto {
         guard let rotation, inFlightDelegate == nil else { throw CameraError.notReady }
         let angle = rotation.captureAngle
         defer { inFlightDelegate = nil }
@@ -72,7 +72,7 @@ final class CameraService: CameraControlling {
                     connection.videoRotationAngle = angle
                 }
                 let settings = AVCapturePhotoSettings()
-                settings.flashMode = .off   // フラッシュは M2
+                settings.flashMode = flash && photoOutput.supportedFlashModes.contains(.on) ? .on : .off
                 settings.photoQualityPrioritization = .speed
                 photoOutput.capturePhoto(with: settings, delegate: delegate)
             }
