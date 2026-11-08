@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>カメラを選ぶ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;family=VT323&amp;family=Shrikhand&amp;family=Special+Elite&amp;family=Pacifico&amp;family=DM+Serif+Display:ital@0;1&amp;family=Monoton&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1C1B19}a:hover{color:#000000}
+@keyframes popin{0%{transform:scale(0.6) translateY(30px);opacity:0}70%{transform:scale(1.06) translateY(-4px);opacity:1}100%{transform:scale(1) translateY(0);opacity:1}}
+@keyframes fadeup{0%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes hint{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+</style>
+</helmet>
+<div style="width: 844px; height: 390px; box-sizing: border-box; padding: 16px 32px 0; background: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; color: #F2EDE4; display: flex; flex-direction: column; gap: 10px; position: relative">
+
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<div style="display: flex; align-items: baseline; gap: 14px"><h1 style="margin: 0; font-size: 22px; font-weight: 700">{{title}}</h1><div style="font-size: 12px; color: #A39E93">どのカメラも24枚撮り</div></div>
+<sc-if value="{{midRoll}}" hint-placeholder-val="{{ false }}"><a href="Darkroom.dc.html" style="display: flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 18px; background: #2B2925; color: #F2EDE4; font-size: 12px; text-decoration: none">戻る</a></sc-if>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; flex: 1">
+<sc-for list="{{cams}}" as="f" hint-placeholder-count="5">
+<button onClick="{{f.pick}}" aria-pressed="{{f.pressed}}" style="border: 2px solid {{f.border}}; background: {{f.bg}}; border-radius: 14px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: stretch; gap: 6px; text-align: left; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; position: relative">
+
+<div style="position: absolute; right: 10px; top: 10px">
+<sc-if value="{{f.free}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 3px 10px; border-radius: 10px; background: #F08A24; color: #1C1B19; font-size: 11px; font-weight: 700">無料</div>
+</sc-if>
+<sc-if value="{{f.owned}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 10px; background: #2E4A33; color: #CDEBD1; font-size: 11px; font-weight: 700"><svg width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 L9.5 18 L20 6.5" fill="none" stroke="#CDEBD1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>購入済み</span></div>
+</sc-if>
+<sc-if value="{{f.locked}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; align-items: center; gap: 4px; font-size: 11px; color: #D8D2C6"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#D8D2C6" stroke-width="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#D8D2C6" stroke-width="2"></path></svg><span>$0.99</span></div>
+</sc-if>
+</div>
+
+<div aria-hidden="true" style="width: 112px; height: 62px; position: relative; flex-shrink: 0; margin-top: 24px;">
+<div style="position: absolute; left: 0; top: 0; width: 220px; height: 122px; transform: scale(0.5091); transform-origin: top left">
+<div style="position: absolute; left: 16px; right: 16px; bottom: -12px; height: 16px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 70%)"></div>
+<div style="position: absolute; inset: 0; border-radius: 14px; background: linear-gradient(180deg, #3C3C3C 0%, #1E1E1E 16%, #131313 78%, #0A0A0A 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -2px 3px rgba(0,0,0,0.6), 0 6px 14px rgba(0,0,0,0.45)"></div>
+<div style="position: absolute; left: 6px; top: 12px; bottom: 12px; width: 26px; border-radius: 8px; background: repeating-linear-gradient(90deg, #242424 0px, #242424 2px, #0B0B0B 2px, #0B0B0B 4px); box-shadow: inset 0 0 6px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.08)"></div>
+<div style="position: absolute; left: 38px; right: 54px; top: 6px; bottom: 6px; border-radius: 4px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 26%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.2) 100%), {{f.body}}; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.25)">
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 24px; display: flex; flex-direction: column"><sc-for list="{{f.stripes}}" as="s" hint-placeholder-count="2"><div style="height: 4px; background: {{s.c}}"></div></sc-for><div style="flex: 1; background: {{f.band}}"></div></div>
+<div style="position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px, rgba(0,0,0,0.035) 2px, rgba(0,0,0,0.035) 3px)"></div>
+</div>
+<div style="position: absolute; left: 70px; top: 16px; width: 66px; height: 66px; border-radius: 50%; background: radial-gradient(circle at 50% 50%, #262626 0%, #262626 52%, #060606 54%, #060606 62%, #2C2C2C 64%, #151515 100%); box-shadow: 0 4px 8px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -2px 3px rgba(0,0,0,0.7)"></div>
+<div style="position: absolute; left: 87px; top: 33px; width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle at 36% 30%, #6D8199 0%, #26313E 32%, #070A0E 70%, #000000 100%); box-shadow: inset 0 0 4px rgba(0,0,0,0.9)"></div>
+<div style="position: absolute; left: 93px; top: 38px; width: 9px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.75); filter: blur(1px); transform: rotate(-30deg)"></div>
+<div style="position: absolute; right: 64px; top: 12px; width: 24px; height: 17px; border-radius: 3px; background: linear-gradient(135deg, #3A4856 0%, #10161C 55%, #05080B 100%); box-shadow: 0 0 0 2px #0A0A0A, inset 0 1px 0 rgba(255,255,255,0.25)"></div>
+<div style="position: absolute; right: 10px; top: 12px; width: 36px; height: 26px; border-radius: 3px; background: repeating-linear-gradient(0deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 2px, rgba(120,120,110,0.35) 2px, rgba(120,120,110,0.35) 3px), linear-gradient(180deg, #F6F6F2 0%, #CFCFC6 100%); box-shadow: 0 0 0 2px #1E1E1E, inset 0 0 4px rgba(0,0,0,0.25)"></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-family: {{f.font}}; font-size: 15px; line-height: 1.3; white-space: nowrap">{{f.name}}</div>
+<div style="font-size: 11px; color: #B5AFA3; line-height: 1.5">{{f.desc}}</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin-top: auto">
+<sc-for list="{{f.samples}}" as="s" hint-placeholder-count="3">
+<div style="height: 30px; background: radial-gradient(ellipse at center, {{s.c}} 0%, {{s.d}} 100%); box-shadow: 0 0 0 2px #EDE6D8"></div>
+</sc-for>
+</div>
+</button>
+</sc-for>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<div style="font-size: 12px; color: #B5AFA3; line-height: 1.6">{{note1}}<br>{{note2}}</div>
+<div style="display: flex; align-items: center; gap: 10px">
+<sc-if value="{{showBundle}}" hint-placeholder-val="{{ true }}"><button style="min-height: 44px; padding: 0 16px; border-radius: 22px; border: 1px solid #5A564D; background: transparent; color: #E2DCD0; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12px; cursor: pointer; white-space: nowrap">4台セット $2.99</button></sc-if>
+<sc-if value="{{canOpen}}" hint-placeholder-val="{{ true }}">
+<a href="Main.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 26px; border-radius: 24px; background: #F08A24; font-size: 15px; font-weight: 700; text-decoration: none; white-space: nowrap">このカメラを開ける</a>
+</sc-if>
+<sc-if value="{{waitOpen}}" hint-placeholder-val="{{ false }}"><button disabled="disabled" style="min-height: 48px; padding: 0 22px; border-radius: 24px; border: 1px solid #4A473F; background: transparent; color: #A39E93; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 13px; white-space: nowrap">撮り切ったら選べます</button></sc-if>
+<sc-if value="{{pickedLocked}}" hint-placeholder-val="{{ false }}">
+<button onClick="{{openDetail}}" style="min-height: 48px; padding: 0 26px; border-radius: 24px; border: none; background: #F2EDE4; color: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; white-space: nowrap">詳しく見る</button>
+</sc-if>
+</div>
+</div>
+
+<div style="margin: 0 -32px; height: 50px; flex-shrink: 0; box-sizing: border-box; background: #24221F; border-top: 1px dashed #4A473F; display: flex; align-items: center; justify-content: center; gap: 8px; color: #A39E93; font-size: 12px"><span style="padding: 1px 6px; border: 1px solid #8A847A; border-radius: 3px; font-size: 10px">AD</span><span>AdMob アダプティブバナー</span></div>
+<sc-if value="{{showDetail}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; z-index: 5">
+<dc-import name="Purchase" camera="{{detailCam}}" mid-roll="{{midRoll}}" on-back="{{closeDetail}}" on-bought="{{markBought}}" hint-size="844px,390px"></dc-import>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"midRoll":{"editor":"boolean","default":false},"owned":{"editor":"enum","options":["none","party","all"],"default":"party"},"$preview":{"width":844,"height":390}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const picked = st.picked || 'sunshine';
+    const self = this;
+    const list = [
+      { id: 'sunshine', name: 'SUNDAY 400', font: 'Shrikhand, cursive', desc: '日曜日のあたたかい色。90年代の写真屋プリント', free: true,
+        body: '#F2B42A', band: '#24315E', stripes: ['#F7D24A', '#EE8A2B', '#D9452B'],
+        samples: [['#C49A5C', '#3E2E1E'], ['#A38E62', '#33301F'], ['#C0855A', '#3C2A1E']] },
+      { id: 'charcoal', name: 'NOIR 1600', font: 'Special Elite, monospace', desc: '粒子の粗い、70年代のモノクロ', free: false,
+        body: '#2A2825', band: '#1A1917', stripes: ['#F08A24'],
+        samples: [['#A0A0A0', '#141414'], ['#7E7E7E', '#101010'], ['#B8B8B8', '#1A1A1A']] },
+      { id: 'pool', name: 'SPLASH 200', font: 'Pacifico, cursive', desc: '明るく青みがかった、夏の色', free: false,
+        body: '#2E5FB4', band: '#9CCBEA', stripes: ['#F4F1E6'],
+        samples: [['#C4E0E8', '#5A8496'], ['#B4D8E2', '#4E7A8C'], ['#D2E6E4', '#6A8E96']] },
+      { id: 'green', name: 'ALBUM 100', font: 'DM Serif Display, serif', desc: '少し色あせた、家族アルバム', free: false,
+        body: '#3F8A45', band: '#161616', stripes: ['#F4F1E6', '#C8352B'],
+        samples: [['#A3AE8E', '#454C3A'], ['#B2A88E', '#4C463A'], ['#94A68C', '#3E4A3A']] },
+      { id: 'party', name: 'NITE 800', font: 'Monoton, cursive', desc: 'フラッシュで夜を撮る', free: false,
+        body: '#151515', band: '#2A2A2A', stripes: ['#FF4FA3'],
+        samples: [['#F0C2B0', '#080808'], ['#E8A8A0', '#050505'], ['#F4D0C0', '#0A0A0A']] }
+    ];
+    const ownedSet = ({ none: [], party: ['party'], all: ['charcoal', 'pool', 'green', 'party'] }[this.props.owned || 'party'] || []).concat(st.bought || []);
+    let pickedFree = true;
+    const cams = list.map(function (f) {
+      const on = f.id === picked;
+      const owned = !f.free && ownedSet.indexOf(f.id) >= 0;
+      const usable = f.free || owned;
+      if (on) pickedFree = usable;
+      return {
+        name: f.name, font: f.font, desc: f.desc, free: f.free, owned: owned, locked: !usable,
+        body: f.body, band: f.band,
+        stripes: f.stripes.map(function (c) { return { c: c }; }),
+        pressed: on ? 'true' : 'false',
+        border: on ? '#F08A24' : '#34312B',
+        bg: on ? '#2A2520' : '#23211E',
+        samples: f.samples.map(function (s) { return { c: s[0], d: s[1] }; }),
+        pick: function () { self.setState({ picked: f.id }); }
+      };
+    });
+    return {
+      cams: cams, pickedFree: pickedFree, pickedLocked: !pickedFree,
+      midRoll: !!this.props.midRoll,
+      canOpen: pickedFree && !this.props.midRoll, waitOpen: pickedFree && !!this.props.midRoll,
+      title: this.props.midRoll ? 'カメラを見る' : 'カメラを選ぶ',
+      note1: this.props.midRoll ? '今のカメラを撮り切ったら、次のカメラとして選べます。' : '買ったカメラは何度でも使えます。',
+      note2: this.props.midRoll ? '買ったカメラは何度でも使えます。' : '24枚撮り切ったら、カメラごと現像に出します。',
+      showBundle: ownedSet.length < 4,
+      showDetail: !!st.detail, detailCam: st.detail || picked,
+      openDetail: function () { self.setState({ detail: picked }); },
+      closeDetail: function () { self.setState({ detail: null }); },
+      markBought: function (id) { const b = ((self.state || {}).bought || []).slice(); if (b.indexOf(id) < 0) b.push(id); self.setState({ bought: b }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

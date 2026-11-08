@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>袋を開けて写真を見る</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;family=VT323&amp;family=Shrikhand&amp;family=Special+Elite&amp;family=Pacifico&amp;family=DM+Serif+Display:ital@0;1&amp;family=Monoton&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#F2EDE4}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="width: 844px; height: 390px; box-sizing: border-box; padding: 16px 40px 0; background: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; color: #F2EDE4; display: flex; flex-direction: column; gap: 8px; position: relative; overflow: hidden">
+
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="Darkroom.dc.html" style="display: flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 22px; background: #2B2925; font-size: 13px; text-decoration: none">現像</a>
+<div style="font-size: 13px; color: #C9C3B8">10/12〜10/19 ・ 24枚</div>
+<div style="width: 70px; text-align: right; font-family: 'VT323', monospace; font-size: 22px; color: #F2EDE4">{{counter}}</div>
+</div>
+
+<sc-if value="{{closed}}" hint-placeholder-val="{{ true }}">
+<div style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 48px">
+<div onPointerDown="{{flapStart}}" onPointerMove="{{flapMove}}" onPointerUp="{{flapEnd}}" onPointerCancel="{{flapEnd}}" style="width: 270px; height: 168px; flex-shrink: 0; position: relative; touch-action: none; cursor: ns-resize; perspective: 600px">
+<div aria-hidden="true" style="position: absolute; left: 22px; right: 22px; top: {{peekTop}}; height: 120px; background: #F6F1E6; box-shadow: 0 2px 6px rgba(0,0,0,0.35)"></div>
+<div style="position: absolute; inset: 0; border-radius: 10px; background: {{t.body}}; overflow: hidden; box-shadow: 0 10px 24px rgba(0,0,0,0.55)">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 35%, rgba(0,0,0,0.14) 100%), repeating-linear-gradient(35deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 3px), repeating-linear-gradient(-55deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 4px)"></div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column">
+<sc-for list="{{t.stripes}}" as="s" hint-placeholder-count="2"><div style="height: 7px; background: {{s.c}}"></div></sc-for>
+<div style="height: 28px; background: {{t.band}}"></div>
+</div>
+<div style="position: absolute; right: 16px; bottom: 52px; padding: 6px 10px; background: #F4EEE2; color: #3B3328; display: flex; flex-direction: column; gap: 2px">
+<div style="font-family: 'VT323', monospace; font-size: 16px; line-height: 1.2; white-space: nowrap"><span style="font-family: {{t.font}}; font-size: 13px">{{t.name}}</span> ・ 24EXP</div>
+<div style="font-family: 'VT323', monospace; font-size: 16px; line-height: 1">10/12-10/19</div>
+</div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 52px; border-radius: 10px 10px 0 0; background: {{t.flap}}; border-bottom: 1px solid rgba(0,0,0,0.25); transform-origin: top center; transform: rotateX({{flapDeg}}); box-shadow: 0 2px 4px rgba(0,0,0,0.25)"></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 240px">
+<div style="font-size: 18px; font-weight: 700">写真が届きました</div>
+<div style="font-size: 13px; color: #B5AFA3; line-height: 1.6">ふたを上へめくって開けましょう。<br>写真は1枚ずつスワイプしてめくれます。</div>
+<button onClick="{{open}}" style="align-self: flex-start; min-height: 48px; padding: 0 26px; border-radius: 24px; border: none; background: #2B2925; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer">ボタンで開ける</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{opened}}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<button aria-label="前の写真" onClick="{{prev}}" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: #2B2925; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 L5 8 L10 13" fill="none" stroke="#F2EDE4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+
+<div onPointerDown="{{dragStart}}" onPointerMove="{{dragMove}}" onPointerUp="{{dragEnd}}" onPointerCancel="{{dragEnd}}" style="flex: 1; height: 220px; position: relative; touch-action: none; cursor: grab">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 50%; width: 300px; height: 200px; margin-left: -150px; margin-top: -100px; background: #E9E2D3; transform: rotate(3deg) translateX(10px); box-shadow: 0 6px 14px rgba(0,0,0,0.45)"></div>
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 50%; width: 300px; height: 200px; margin-left: -150px; margin-top: -100px; background: #EFE8DA; transform: rotate(-2deg) translateX(-6px); box-shadow: 0 6px 14px rgba(0,0,0,0.45)"></div>
+<div role="img" aria-label="写真 {{num}}枚目" style="position: absolute; left: 50%; top: 50%; width: 300px; height: 200px; margin-left: -150px; margin-top: -100px; box-sizing: border-box; padding: 10px; background: #F6F1E6; box-shadow: 0 10px 22px rgba(0,0,0,0.55); transform: translateX({{dragX}}) rotate({{tilt}})">
+<div style="width: 100%; height: 100%; position: relative; background: radial-gradient(ellipse at center, {{tone}} 0%, #2A2620 100%)">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #EDE6D8">写真 {{num}}</div>
+<div style="position: absolute; right: 12px; bottom: 6px; font-family: 'VT323', monospace; font-size: 20px; color: #FF9A2E; text-shadow: 0 0 5px rgba(255,140,30,0.5)">{{date}}</div>
+</div>
+</div>
+</div>
+
+<button aria-label="次の写真" onClick="{{next}}" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: #2B2925; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3 L11 8 L6 13" fill="none" stroke="#F2EDE4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+<div style="text-align: center; font-size: 12px; color: #A39E93">{{hint}}</div>
+</sc-if>
+
+<div style="margin: 0 -40px; height: 50px; flex-shrink: 0; box-sizing: border-box; background: #24221F; border-top: 1px dashed #4A473F; display: flex; align-items: center; justify-content: center; gap: 8px; color: #A39E93; font-size: 12px"><span style="padding: 1px 6px; border: 1px solid #8A847A; border-radius: 3px; font-size: 10px">AD</span><span>AdMob アダプティブバナー</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startOpen":{"editor":"boolean","default":false},"theme":{"editor":"enum","options":["sunshine","charcoal","pool","green","party"],"default":"sunshine"},"$preview":{"width":844,"height":390}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const self = this;
+    const tones = ['#8A7A5E', '#6F7A6A', '#9A7356', '#5F6B78', '#8C8166', '#7A6355', '#86745A', '#66786F', '#9C805E', '#6A6A7A', '#8E7A62', '#7C6A58'];
+    const dates = ['10 12', '10 12', '10 13', '10 13', '10 14', '10 15', '10 15', '10 16', '10 17', '10 18', '10 19', '10 19'];
+    const total = 24;
+    const idx = st.idx || 0;
+    const opened = st.opened == null ? !!this.props.startOpen : st.opened;
+    const flap = st.flap || 0;
+    const drag = st.drag || 0;
+    const go = function (d) {
+      const s = self.state || {};
+      const i = Math.max(0, Math.min(total - 1, (s.idx || 0) + d));
+      self.setState({ idx: i, drag: 0 });
+    };
+    const T = {
+      charcoal: { name: 'NOIR 1600', font: 'Special Elite, monospace', body: '#3A3833', flap: '#2E2C28', band: '#1C1B19', accent: '#F08A24', stripes: ['#F08A24'] },
+      sunshine: { name: 'SUNDAY 400', font: 'Shrikhand, cursive', body: '#F2B42A', flap: '#E2A11A', band: '#24315E', accent: '#D9452B', stripes: ['#F7D24A', '#EE8A2B', '#D9452B'] },
+      pool: { name: 'SPLASH 200', font: 'Pacifico, cursive', body: '#2E5FB4', flap: '#28529C', band: '#9CCBEA', accent: '#F6D343', stripes: ['#F4F1E6'] },
+      party: { name: 'NITE 800', font: 'Monoton, cursive', body: '#1E1E1E', flap: '#151515', band: '#2A2A2A', accent: '#FF4FA3', stripes: ['#FF4FA3'] },
+      green: { name: 'ALBUM 100', font: 'DM Serif Display, serif', body: '#3F8A45', flap: '#357639', band: '#161616', accent: '#C8352B', stripes: ['#F4F1E6', '#C8352B'] }
+    };
+    const th = T[this.props.theme] || T.sunshine;
+    return {
+      t: Object.assign({}, th, { stripes: th.stripes.map(function (c) { return { c: c }; }) }),
+      closed: !opened,
+      opened: opened,
+      counter: opened ? (idx + 1) + '/' + total : '',
+      num: idx + 1,
+      tone: tones[idx % tones.length],
+      date: "'26 " + dates[Math.floor(idx / 2)],
+      dragX: Math.round(drag) + 'px',
+      tilt: (drag / 40).toFixed(2) + 'deg',
+      hint: idx === total - 1 ? 'これで全部です' : (st.justOpened && idx === 0 ? '24枚を写真アプリに保存しました ・ 左右にスワイプしてめくる' : '左右にスワイプしてめくる'),
+      open: function () { self.setState({ opened: true, justOpened: true, idx: 0, drag: 0 }); },
+      flapDeg: (-flap * 170).toFixed(0) + 'deg',
+      peekTop: Math.round(30 - flap * 60) + 'px',
+      flapStart: function (e) {
+        self._flapY = e.clientY;
+        if (e.currentTarget && e.currentTarget.setPointerCapture) e.currentTarget.setPointerCapture(e.pointerId);
+      },
+      flapMove: function (e) {
+        if (self._flapY == null) return;
+        const p = Math.max(0, Math.min(1, (self._flapY - e.clientY) / 90));
+        self.setState({ flap: p });
+      },
+      flapEnd: function () {
+        if (self._flapY == null) return;
+        self._flapY = null;
+        const p = (self.state && self.state.flap) || 0;
+        if (p > 0.6) {
+          self.setState({ flap: 1 });
+          setTimeout(function () { self.setState({ opened: true, justOpened: true, idx: 0, drag: 0, flap: 0 }); }, 450);
+        } else self.setState({ flap: 0 });
+      },
+      prev: function () { go(-1); },
+      next: function () { go(1); },
+      dragStart: function (e) {
+        self._dragging = true;
+        self._startX = e.clientX;
+        if (e.currentTarget && e.currentTarget.setPointerCapture) e.currentTarget.setPointerCapture(e.pointerId);
+      },
+      dragMove: function (e) {
+        if (!self._dragging) return;
+        self.setState({ drag: e.clientX - self._startX });
+      },
+      dragEnd: function () {
+        if (!self._dragging) return;
+        self._dragging = false;
+        const d = (self.state && self.state.drag) || 0;
+        if (d < -60) go(1);
+        else if (d > 60) go(-1);
+        else self.setState({ drag: 0 });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
