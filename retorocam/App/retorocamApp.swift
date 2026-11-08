@@ -1,17 +1,12 @@
-//
-//  retorocamApp.swift
-//  retorocam
-//
-//  Created by 諸藤和穂 on 2026/11/08.
-//
-
 import SwiftUI
 
 @main
 struct retorocamApp: App {
+    @State private var model = CameraModel.makeDefault()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CameraScreen(model: model)
         }
     }
 }
