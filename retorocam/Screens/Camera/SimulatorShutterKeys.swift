@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// シミュレータでは音量ボタンの代わりにキーボードで撮る（スペース／Return＝横、P＝縦）。
 struct SimulatorShutterKeys: ViewModifier {
@@ -24,7 +25,12 @@ private struct KeyHost<Content: View>: View {
             .focusable()
             .focused($isFocused)
             .focusEffectDisabled()
-            .onAppear { isFocused = true }
+            .onAppear {
+                isFocused = true
+                // シミュレータは持ち方がないので、音量ボタン側を上にした横向きで表示する
+                (UIApplication.shared.connectedScenes.first as? UIWindowScene)?
+                    .requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeLeft))
+            }
             .onKeyPress(keys: [.space, .return, "p"]) { press in
                 model.simulatorShutter(portrait: press.characters == "p")
                 return .handled
