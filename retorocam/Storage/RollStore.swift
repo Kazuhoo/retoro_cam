@@ -31,6 +31,28 @@ final class RollStore {
         save()
     }
 
+    func allRolls() -> [Roll] {
+        (try? context.fetch(FetchDescriptor<Roll>())) ?? []
+    }
+
+    func send(_ roll: Roll, now: Date) {
+        roll.state = .developing
+        roll.sentAt = now
+        roll.deliverAt = now.addingTimeInterval(Roll.developDuration)
+        save()
+    }
+
+    func markOpened(_ roll: Roll, now: Date) {
+        roll.state = .opened
+        roll.openedAt = now
+        save()
+    }
+
+    func markSavedToPhotos(_ roll: Roll, now: Date) {
+        roll.savedToPhotosAt = now
+        save()
+    }
+
     func save() {
         do {
             try context.save()

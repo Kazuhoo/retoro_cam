@@ -18,6 +18,7 @@ final class CameraModel {
     private(set) var isSessionRunning = false
     private(set) var state = ShootingState()
     private(set) var isFlashOn = false
+    private(set) var hasNewDelivery = false
     private(set) var isBouncing = false
     private(set) var signal: Signal?
     /// シャッターを押してから保存が終わるまでのコマ番号
@@ -40,7 +41,7 @@ final class CameraModel {
         self.clock = clock
         self.rolls = rolls
         self.cameraOverride = cameraOverride
-        roll = rolls.currentRoll(openingIfNone: .sunshine, now: clock.now)
+        roll = rolls.currentRoll(openingIfNone: cameraOverride ?? .sunshine, now: clock.now)
         camera.onRunningChange = { [weak self] in self?.isSessionRunning = $0 }
     }
 
@@ -49,6 +50,8 @@ final class CameraModel {
     var remaining: Int { state.displayedRemaining(exposed: exposed) }
     var isEmpty: Bool { state.isEmpty(exposed: exposed) }
     var canShoot: Bool { state.canShoot(exposed: exposed) }
+    /// 加工中のコマが残っている間は現像に出せない
+    var canSend: Bool { isEmpty && reservedFrames.isEmpty }
 
     func activate() async {
         if access == .unknown {
@@ -156,6 +159,22 @@ final class CameraModel {
         Haptics.flashSwitch()
     }
 
+    // MARK: - ロール
+
+    /// 現像に出したあと、次のカメラを開ける（M4 でカメラを選ぶ画面に置き換える）
+    func openNextRoll() {
+        roll = rolls.currentRoll(openingIfNone: cameraOverride ?? .sunshine, now: clock.now)
+        state = ShootingState()
+        isFlashOn = false
+        lastPressedFrame = nil
+        refreshDeliveries()
+    }
+
+    func refreshDeliveries() {
+        let now = clock.now
+        hasNewDelivery = rolls.allRolls().contains { $0.isDelivered(at: now) }
+    }
+
     // MARK: - デバッグ
 
     #if DEBUG
@@ -180,13 +199,13 @@ final class CameraModel {
 }
 
 extension CameraModel {
-    static func makeDefault(rolls: RollStore) -> CameraModel {
+    static func makeDefault(services: AppServices) -> CameraModel {
         #if targetEnvironment(simulator)
         let environment = ProcessInfo.processInfo.environment["RETORO_CAMERA"]
-        return CameraModel(camera: SimulatedCameraService(), clock: SystemClock(), rolls: rolls,
+        return CameraModel(camera: SimulatedCameraService(), clock: services.clock, rolls: services.rolls,
                            cameraOverride: environment.flatMap(CameraID.init(rawValue:)))
         #else
-        return CameraModel(camera: CameraService(), clock: SystemClock(), rolls: rolls)
+        return CameraModel(camera: CameraService(), clock: services.clock, rolls: services.rolls)
         #endif
     }
 }

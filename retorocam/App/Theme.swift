@@ -5,6 +5,63 @@ enum Theme {
     enum Common {
         static let background = Color(hex: 0x1C1B19)
         static let text = Color(hex: 0xF2EDE4)
+        static let subText = Color(hex: 0xA39E93)
+        static let card = Color(hex: 0x23211E)
+        static let button = Color(hex: 0x2B2925)
+        static let accent = Color(hex: 0xF08A24)
+    }
+
+    enum SendLab {
+        static let gap: CGFloat = 56
+        static let title = Font.system(size: 22, weight: .bold)
+        static let body = Font.system(size: 13)
+        static let dash = Color(hex: 0x5A564D)
+    }
+
+    enum Darkroom {
+        static let topPadding: CGFloat = 16
+        static let horizontalPadding: CGFloat = 16
+        static let gap: CGFloat = 10
+        static let columnGap: CGFloat = 20
+        static let leftWidth: CGFloat = 380
+        static let count = Font.system(size: 26, design: .monospaced)
+        static let rowTitle = Font.system(size: 14, weight: .bold)
+        static let rowDetail = Font.system(size: 12)
+        static let button = Font.system(size: 13, weight: .bold)
+        static let barTrack = Color(hex: 0x3A3832)
+    }
+
+    enum Envelope {
+        static let largeWidth: CGFloat = 270
+        static let largeHeight: CGFloat = 168
+        static let smallWidth: CGFloat = 132
+        static let smallHeight: CGFloat = 80
+        static let smallFlap: CGFloat = 26
+        static let cornerRadius: CGFloat = 10
+        static let flapHeight: CGFloat = 52
+        static let flapMaxAngle: Double = 170
+        static let stripeHeight: CGFloat = 7
+        static let bandHeight: CGFloat = 28
+        static let labelTrailing: CGFloat = 16
+        static let labelBottom: CGFloat = 52
+        static let labelPaper = Color(hex: 0xF4EEE2)
+        static let labelText = Color(hex: 0x3B3328)
+        static let peekHeight: CGFloat = 120
+        static let peekInset: CGFloat = 22
+        static let peekTop: CGFloat = 30
+        static let peekTravel: CGFloat = 60
+    }
+
+    enum Prints {
+        static let paper = Color(hex: 0xF6F1E6)
+        static let underCard = Color(hex: 0xEFE8DA)
+        static let backCard = Color(hex: 0xE9E2D3)
+        static let border: CGFloat = 10
+        static let cardHeight: CGFloat = 200
+        static let portraitMargin: CGFloat = 6
+        static let envelopeGap: CGFloat = 48
+        static let flapDragDistance: CGFloat = 90
+        static let swipeThreshold: CGFloat = 60
     }
 
     /// 撮影画面の配置（モックアップ 844×390 の値）
@@ -23,6 +80,7 @@ enum Theme {
         static let stripeHeight: CGFloat = 3
         static let stripesTotalHeight: CGFloat = 16
         static let iconSize: CGFloat = 44
+        static let adHeight: CGFloat = 50
     }
 
     enum Text {

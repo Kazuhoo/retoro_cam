@@ -14,6 +14,7 @@ final class Roll {
     var sentAt: Date?
     var deliverAt: Date?
     var openedAt: Date?
+    var savedToPhotosAt: Date?
     @Relationship(deleteRule: .cascade, inverse: \Shot.roll) var shots: [Shot] = []
 
     init(id: UUID = UUID(), cameraID: String, createdAt: Date, state: RollState = .shooting) {
