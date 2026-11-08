@@ -54,7 +54,9 @@ final class CameraService: CameraControlling {
     }
 
     func attachPreview(_ layer: AVCaptureVideoPreviewLayer) {
+        // 撮影画面に戻るとレイヤーが作り直されるので、回転の監視も作り直す
         previewLayer = layer
+        rotation = nil
         makeRotationObserverIfReady()
     }
 

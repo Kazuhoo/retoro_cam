@@ -2,6 +2,9 @@ import SwiftUI
 
 struct CameraScreen: View {
     let model: CameraModel
+    let services: AppServices
+    let onSend: () -> Void
+    let onOpenDarkroom: () -> Void
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -13,6 +16,15 @@ struct CameraScreen: View {
                 } else if scenePhase == .background {
                     await model.deactivate()
                 }
+            }
+            .task {
+                while !Task.isCancelled {
+                    model.refreshDeliveries()
+                    try? await Task.sleep(for: .seconds(30))
+                }
+            }
+            .onDisappear {
+                Task { await model.deactivate() }
             }
     }
 
@@ -39,7 +51,7 @@ struct CameraScreen: View {
             ZStack(alignment: .topLeading) {
                 HStack(alignment: .top, spacing: Theme.Layout.columnGap) {
                     viewfinder.frame(width: layout.viewfinder.width, height: layout.viewfinder.height)
-                    ShootingControls(model: model, theme: theme)
+                    ShootingControls(model: model, theme: theme, onSend: onSend, onOpenDarkroom: onOpenDarkroom)
                         .frame(width: Theme.Layout.columnWidth, height: layout.viewfinder.height)
                 }
                 .padding(.top, Theme.Layout.topPadding)
@@ -70,6 +82,7 @@ struct CameraScreen: View {
             Text(verbatim: "・ 24EXP").font(Theme.Text.exposure)
             #if DEBUG
             DebugRollMenu(model: model)
+            DebugClockMenu(services: services) { model.refreshDeliveries() }
             #endif
             Spacer(minLength: 0)
             Image(systemName: "triangle.fill").font(.system(size: 9))
@@ -114,7 +127,7 @@ private struct DebugRollMenu: View {
                 Text(verbatim: "残り2にする")
             }
         } label: {
-            Text(verbatim: "[DEBUG]").font(Theme.Text.hintBold)
+            Text(verbatim: "[ROLL]").font(Theme.Text.hintBold)
         }
     }
 }

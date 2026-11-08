@@ -18,6 +18,10 @@ actor PhotoStore {
         return fileName
     }
 
+    nonisolated func url(for fileName: String) -> URL {
+        root.appending(path: fileName)
+    }
+
     func delete(fileName: String) {
         try? FileManager.default.removeItem(at: root.appending(path: fileName))
     }

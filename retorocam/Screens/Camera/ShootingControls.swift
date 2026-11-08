@@ -4,6 +4,8 @@ import SwiftUI
 struct ShootingControls: View {
     let model: CameraModel
     let theme: CameraTheme
+    let onSend: () -> Void
+    let onOpenDarkroom: () -> Void
 
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
@@ -33,8 +35,7 @@ struct ShootingControls: View {
     @ViewBuilder
     private var status: some View {
         if model.isEmpty {
-            // 行き先は M3
-            Button {} label: {
+            Button(action: onSend) {
                 Text("現像")
                     .font(Theme.Text.develop)
                     .foregroundStyle(theme.onAccent)
@@ -42,6 +43,7 @@ struct ShootingControls: View {
                     .padding(.horizontal, Theme.Status.developPadding)
                     .background(theme.accent, in: Capsule())
             }
+            .disabled(!model.canSend)
         } else if model.state.isWound {
             statusLine(color: Theme.Status.readyDot, glows: true, text: "撮影できます")
         } else {
@@ -70,18 +72,26 @@ struct ShootingControls: View {
                 .foregroundStyle(theme.sub)
                 FlashSwitch(isOn: model.isFlashOn, iconColor: theme.sub) { model.setFlash($0) }
             }
-            // 行き先は M3 と M5
-            iconButton("photo")
-            iconButton("gearshape")
+            iconButton("photo", showsDot: model.hasNewDelivery, action: onOpenDarkroom)
+            // 行き先は M5
+            iconButton("gearshape", showsDot: false) {}
         }
     }
 
-    private func iconButton(_ symbol: String) -> some View {
-        Button {} label: {
+    private func iconButton(_ symbol: String, showsDot: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
             Image(systemName: symbol)
                 .foregroundStyle(Theme.Common.text)
                 .frame(width: Theme.Layout.iconSize, height: Theme.Layout.iconSize)
                 .background(theme.button, in: Circle())
+                .overlay(alignment: .topTrailing) {
+                    if showsDot {
+                        Circle()
+                            .fill(theme.dot)
+                            .frame(width: Theme.Status.dotSize, height: Theme.Status.dotSize)
+                            .padding(4)
+                    }
+                }
         }
     }
 }
