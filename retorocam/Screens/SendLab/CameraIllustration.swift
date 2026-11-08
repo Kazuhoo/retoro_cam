@@ -4,8 +4,11 @@ import SwiftUI
 struct CameraIllustration: View {
     let camera: CameraID
 
-    private var bodyColor: Color { camera == .charcoal ? Color(hex: 0x2A2825) : camera.theme.body }
-    private var bandColor: Color { camera == .charcoal ? Color(hex: 0x1A1917) : camera.theme.band }
+    /// 元の大きさ
+    static let size = CGSize(width: 220, height: 122)
+
+    private var bodyColor: Color { camera.illustrationBody }
+    private var bandColor: Color { camera.illustrationBand }
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -23,7 +26,7 @@ struct CameraIllustration: View {
             flashWindow
             counter
         }
-        .frame(width: 220, height: 122)
+        .frame(width: Self.size.width, height: Self.size.height)
     }
 
     private var grip: some View {
@@ -110,5 +113,18 @@ struct CameraIllustration: View {
             .frame(width: 30, height: 18)
             .background(Color(hex: 0x050505), in: RoundedRectangle(cornerRadius: 3))
             .offset(x: 178, y: 46)
+    }
+}
+
+/// カメラの絵を指定の幅に縮小したもの
+struct ScaledCameraIllustration: View {
+    let camera: CameraID
+    let width: CGFloat
+
+    var body: some View {
+        let scale = width / CameraIllustration.size.width
+        CameraIllustration(camera: camera)
+            .scaleEffect(scale, anchor: .topLeading)
+            .frame(width: width, height: CameraIllustration.size.height * scale, alignment: .topLeading)
     }
 }

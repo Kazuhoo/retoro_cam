@@ -1,0 +1,87 @@
+{
+  "identifier": "7C1E4D52",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6700000001",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ NOIR 1600",
+          "displayName": "NOIR 1600",
+          "locale": "ja"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.noir1600",
+      "referenceName": "NOIR 1600",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6700000002",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ SPLASH 200",
+          "displayName": "SPLASH 200",
+          "locale": "ja"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.splash200",
+      "referenceName": "SPLASH 200",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6700000003",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ ALBUM 100",
+          "displayName": "ALBUM 100",
+          "locale": "ja"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.album100",
+      "referenceName": "ALBUM 100",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6700000004",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ NITE 800",
+          "displayName": "NITE 800",
+          "locale": "ja"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.nite800",
+      "referenceName": "NITE 800",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "6700000005",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ 4台セット",
+          "displayName": "4台セット",
+          "locale": "ja"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.bundle4",
+      "referenceName": "4台セット",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {},
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

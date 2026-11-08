@@ -11,13 +11,15 @@ final class RollStore {
         self.context = context
     }
 
-    /// 撮影中のロールを返す。なければ指定のカメラで開ける。
-    func currentRoll(openingIfNone camera: CameraID, now: Date) -> Roll {
+    /// 撮影中のロール。なければ nil
+    func shootingRoll() -> Roll? {
         // #Predicate は enum の比較で問題が起きやすいので Swift 側で絞り込む
-        let rolls = (try? context.fetch(FetchDescriptor<Roll>())) ?? []
-        if let shooting = rolls.filter({ $0.state == .shooting }).max(by: { $0.createdAt < $1.createdAt }) {
-            return shooting
-        }
+        allRolls().filter { $0.state == .shooting }.max { $0.createdAt < $1.createdAt }
+    }
+
+    /// カメラを開ける。撮影中のロールがあれば、新しくは開けずにそれを返す。
+    func openRoll(camera: CameraID, now: Date) -> Roll {
+        if let shooting = shootingRoll() { return shooting }
         let roll = Roll(cameraID: camera.rawValue, createdAt: now)
         context.insert(roll)
         save()

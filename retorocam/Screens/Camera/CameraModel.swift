@@ -23,7 +23,8 @@ final class CameraModel {
     private(set) var signal: Signal?
     /// シャッターを押してから保存が終わるまでのコマ番号
     private(set) var reservedFrames: Set<Int> = []
-    private(set) var roll: Roll
+    /// まだカメラを開けていないときは nil
+    private(set) var roll: Roll?
 
     let camera: any CameraControlling
 
@@ -31,22 +32,22 @@ final class CameraModel {
     private let processor = FilmProcessor()
     private let photos = PhotoStore()
     private let rolls: RollStore
-    private let cameraOverride: CameraID?
     private var isCapturing = false
     private var lastPressedFrame: Int?
     private static let logger = Logger(subsystem: "retorocam", category: "Camera")
 
-    init(camera: any CameraControlling, clock: any Clock, rolls: RollStore, cameraOverride: CameraID? = nil) {
+    init(camera: any CameraControlling, clock: any Clock, rolls: RollStore) {
         self.camera = camera
         self.clock = clock
         self.rolls = rolls
-        self.cameraOverride = cameraOverride
-        roll = rolls.currentRoll(openingIfNone: cameraOverride ?? .sunshine, now: clock.now)
+        roll = rolls.shootingRoll()
         camera.onRunningChange = { [weak self] in self?.isSessionRunning = $0 }
     }
 
-    var cameraID: CameraID { cameraOverride ?? CameraID(rawValue: roll.cameraID) ?? .sunshine }
-    var exposed: Int { roll.shots.count + reservedFrames.count }
+    var cameraID: CameraID { roll?.camera ?? .sunshine }
+    /// 撮影の途中か（現像に出したロールは含めない）
+    var hasShootingRoll: Bool { roll?.state == .shooting }
+    var exposed: Int { (roll?.shots.count ?? 0) + reservedFrames.count }
     var remaining: Int { state.displayedRemaining(exposed: exposed) }
     var isEmpty: Bool { state.isEmpty(exposed: exposed) }
     var canShoot: Bool { state.canShoot(exposed: exposed) }
@@ -68,7 +69,7 @@ final class CameraModel {
 
     /// コマ番号は押した瞬間に確定する。加工や保存に失敗したらそのコマを取り消す。
     func shutter() {
-        guard isSessionRunning, !isCapturing, canShoot, let frame = nextFrame() else { return }
+        guard let roll, isSessionRunning, !isCapturing, canShoot, let frame = nextFrame() else { return }
 
         let flash = isFlashOn
         let takenAt = clock.now
@@ -106,7 +107,7 @@ final class CameraModel {
 
     /// 取り消されたコマの番号も再利用する
     private func nextFrame() -> Int? {
-        let used = Set(roll.shots.map(\.index)).union(reservedFrames)
+        let used = Set(roll?.shots.map(\.index) ?? []).union(reservedFrames)
         return (1...ShootingState.totalFrames).first { !used.contains($0) }
     }
 
@@ -161,9 +162,9 @@ final class CameraModel {
 
     // MARK: - ロール
 
-    /// 現像に出したあと、次のカメラを開ける（M4 でカメラを選ぶ画面に置き換える）
-    func openNextRoll() {
-        roll = rolls.currentRoll(openingIfNone: cameraOverride ?? .sunshine, now: clock.now)
+    /// 選んだカメラを開ける
+    func openRoll(camera: CameraID) {
+        roll = rolls.openRoll(camera: camera, now: clock.now)
         state = ShootingState()
         isFlashOn = false
         lastPressedFrame = nil
@@ -180,7 +181,7 @@ final class CameraModel {
     #if DEBUG
     /// ロールを残り枚数の状態にする（処理中のコマがあるときは何もしない）
     func debugReset(remaining: Int) {
-        guard reservedFrames.isEmpty else { return }
+        guard let roll, reservedFrames.isEmpty else { return }
         Task {
             await rolls.debugSetExposed(ShootingState.totalFrames - remaining, on: roll,
                                         photos: photos, now: clock.now)
@@ -201,9 +202,7 @@ final class CameraModel {
 extension CameraModel {
     static func makeDefault(services: AppServices) -> CameraModel {
         #if targetEnvironment(simulator)
-        let environment = ProcessInfo.processInfo.environment["RETORO_CAMERA"]
-        return CameraModel(camera: SimulatedCameraService(), clock: services.clock, rolls: services.rolls,
-                           cameraOverride: environment.flatMap(CameraID.init(rawValue:)))
+        return CameraModel(camera: SimulatedCameraService(), clock: services.clock, rolls: services.rolls)
         #else
         return CameraModel(camera: CameraService(), clock: services.clock, rolls: services.rolls)
         #endif
