@@ -5,7 +5,7 @@ import ImageIO
 /// 撮影直後の1枚を「現像済みの見た目」に加工する。
 ///
 /// 本物の使い捨てカメラと同じく、縦持ちの写真もフィルムの向き（横）のまま加工して
-/// 日付を焼き込み、最後に縦へ回す。縦で見ると日付は横倒しになる。
+/// 日付を焼き込み、最後に縦へ回す。縦で見ると日付は右上で、下から上へ年月日と読む向きになる。
 actor FilmProcessor {
     static let outputSize = CGSize(width: 1536, height: 1024)
 
@@ -23,7 +23,7 @@ actor FilmProcessor {
         }
 
         // フィルムの向き（横）にそろえる
-        var image = isPortrait ? upright.oriented(.left) : upright
+        var image = isPortrait ? upright.oriented(.right) : upright
         image = cropTo3x2(image)
         image = resize(image, to: Self.outputSize)
         image = applyLUT(image, name: look.lutName)
@@ -32,7 +32,7 @@ actor FilmProcessor {
         if options.lightLeak { image = FilmEffects.addLightLeak(image) }
         if options.dateStamp { image = FilmEffects.addDateStamp(image, date: date) }
 
-        if isPortrait { image = image.oriented(.right) }
+        if isPortrait { image = image.oriented(.left) }
         image = image.transformed(by: CGAffineTransform(
             translationX: -image.extent.minX, y: -image.extent.minY))
 
