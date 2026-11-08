@@ -19,7 +19,7 @@
 |---|---|
 | 対応OS | iOS 17.2 以上（`AVCaptureEventInteraction` のため） |
 | 端末 | iPhone のみ |
-| 画面の向き | **横向きのみ**（Landscape Right / Left）。縦に持っても画面は回さない |
+| 画面の向き | **横向きのみ**（音量ボタン側が上になる `UIInterfaceOrientationLandscapeLeft` に固定）。逆さの横持ちや縦持ちでも画面は回さない |
 | UI | SwiftUI（カメラのプレビューなど必要な部分だけ UIKit をラップ） |
 | カメラ | AVFoundation |
 | 画像処理 | Core Image（`docs/reference/FilmLook.swift` がたたき台） |
