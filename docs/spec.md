@@ -177,6 +177,7 @@
 - 日付の形式：`'26 11 08`（年2桁、月、日）。オレンジ、右下、少しにじむ。
 - 光漏れは画像の左右どちらかの端から入るオレンジ〜赤の光。位置と強さはランダム。
 - 縦に持って撮ったら、写真は縦長で保存する（`AVCaptureDevice.RotationCoordinator` の `videoRotationAngleForHorizonLevelCapture`）。
+- 縦長の写真の加工も、本物の使い捨てカメラと同じくフィルムの向き（横）で行う。シャッターである音量ボタンの側を上にした横向きで見たときに、日付が右下で正しく読める形に焼き込む。縦で見ると日付は**右上**で、**下から上へ**年・月・日の順に並ぶ（縦持ちの向きによらず固定）。
 - 写真アプリに保存するとき、作成日時は**撮影日時**にする（`PHAssetCreationRequest` の `creationDate`）。
 - 色味（LUT）と粒子・周辺減光の値：`tools/looks/README.md` と `Resources/LUTs/`。
 
