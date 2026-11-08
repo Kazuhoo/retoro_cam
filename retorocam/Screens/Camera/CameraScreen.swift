@@ -1,52 +1,121 @@
 import SwiftUI
 
-/// M1 の仮画面：ファインダーだけ。本番のレイアウトは M2。
 struct CameraScreen: View {
     let model: CameraModel
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        ZStack {
-            Theme.Common.background.ignoresSafeArea()
-            content
-        }
-        .statusBarHidden()
-        .task(id: scenePhase) {
-            if scenePhase == .active {
-                await model.activate()
-            } else if scenePhase == .background {
-                await model.deactivate()
+        content
+            .statusBarHidden()
+            .task(id: scenePhase) {
+                if scenePhase == .active {
+                    await model.activate()
+                } else if scenePhase == .background {
+                    await model.deactivate()
+                }
             }
-        }
     }
 
     @ViewBuilder
     private var content: some View {
         switch model.access {
         case .unknown:
-            EmptyView()
+            Theme.Common.background.ignoresSafeArea()
         case .denied:
-            Text("カメラが使えません。設定アプリでカメラをオンにしてください")
-                .foregroundStyle(Theme.Common.text)
-        case .granted:
-            HStack {
-                viewfinder.padding(.leading, Theme.Viewfinder.leadingPadding)
-                Spacer()
+            ZStack {
+                Theme.Common.background.ignoresSafeArea()
+                Text("カメラが使えません。設定アプリでカメラをオンにしてください")
+                    .foregroundStyle(Theme.Common.text)
             }
+        case .granted:
+            shooting
         }
     }
 
-    private var viewfinder: some View {
-        CameraPreviewView(camera: model.camera)
-            .frame(width: Theme.Viewfinder.width, height: Theme.Viewfinder.height)
-            .clipShape(RoundedRectangle(cornerRadius: Theme.Viewfinder.cornerRadius))
-            .overlay {
-                RoundedRectangle(cornerRadius: Theme.Viewfinder.cornerRadius)
-                    .stroke(Theme.Viewfinder.ringColor, lineWidth: Theme.Viewfinder.ringWidth)
+    private var shooting: some View {
+        let theme = model.cameraID.theme
+        return GeometryReader { proxy in
+            let layout = ScreenLayout(size: proxy.size, insets: proxy.safeAreaInsets)
+            ZStack(alignment: .topLeading) {
+                HStack(alignment: .top, spacing: Theme.Layout.columnGap) {
+                    viewfinder.frame(width: layout.viewfinder.width, height: layout.viewfinder.height)
+                    ShootingControls(model: model, theme: theme)
+                        .frame(width: Theme.Layout.columnWidth, height: layout.viewfinder.height)
+                }
+                .padding(.top, Theme.Layout.topPadding)
+                .padding(.horizontal, layout.horizontalPadding)
+
+                header(theme: theme, layout: layout)
             }
+        }
+        .foregroundStyle(theme.text)
+        .background {
+            theme.body
+                .overlay(alignment: .bottom) { CameraStripes(theme: theme) }
+                .ignoresSafeArea()
+        }
+        .modifier(CameraKeyboardControls(model: model))
+    }
+
+    private var viewfinder: some View {
+        ViewfinderView(camera: model.camera, signal: model.signal)
             .background {
                 CaptureEventView(isEnabled: model.isSessionRunning) { model.shutter() }
             }
-            .modifier(SimulatorShutterKeys(model: model))
+    }
+
+    private func header(theme: CameraTheme, layout: ScreenLayout) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: 6) {
+            Text(verbatim: theme.name).font(Theme.Text.name)
+            Text(verbatim: "・ 24EXP").font(Theme.Text.exposure)
+            #if DEBUG
+            DebugRollMenu(model: model)
+            #endif
+            Spacer(minLength: 0)
+            Image(systemName: "triangle.fill").font(.system(size: 9))
+            Text("シャッター　音量ボタンを押す").font(Theme.Text.hintBold)
+                .padding(.trailing, layout.shutterHintTrailing)
+        }
+        .foregroundStyle(theme.sub)
+        .padding(.top, Theme.Layout.nameTop)
+        .padding(.leading, layout.horizontalPadding + Theme.Layout.nameLeading)
     }
 }
+
+/// セーフエリアに合わせて 3:2 のファインダーの大きさを決める
+private struct ScreenLayout {
+    let viewfinder: CGSize
+    let horizontalPadding: CGFloat
+    let shutterHintTrailing: CGFloat
+
+    init(size: CGSize, insets: EdgeInsets) {
+        let edge = max(insets.leading, insets.trailing)
+        horizontalPadding = max(0, Theme.Layout.horizontalPadding - edge)
+        shutterHintTrailing = max(0, Theme.Layout.shutterHintTrailing - insets.trailing)
+
+        let bottom = max(Theme.Layout.minBottomPadding, Theme.Layout.bottomPadding - insets.bottom)
+        let height = min(Theme.Viewfinder.maxHeight, size.height - Theme.Layout.topPadding - bottom)
+        let room = size.width - horizontalPadding * 2 - Theme.Layout.columnGap - Theme.Layout.columnWidth
+        let width = min(Theme.Viewfinder.maxWidth, room, height * 3 / 2)
+        viewfinder = CGSize(width: width, height: width * 2 / 3)
+    }
+}
+
+#if DEBUG
+private struct DebugRollMenu: View {
+    let model: CameraModel
+
+    var body: some View {
+        Menu {
+            Button { model.debugReset(remaining: ShootingState.totalFrames) } label: {
+                Text(verbatim: "残り24に戻す")
+            }
+            Button { model.debugReset(remaining: 2) } label: {
+                Text(verbatim: "残り2にする")
+            }
+        } label: {
+            Text(verbatim: "[DEBUG]").font(Theme.Text.hintBold)
+        }
+    }
+}
+#endif

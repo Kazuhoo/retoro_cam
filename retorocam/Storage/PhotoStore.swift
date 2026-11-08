@@ -4,19 +4,21 @@ import Foundation
 actor PhotoStore {
     private let root: URL
 
-    init(root: URL = URL.documentsDirectory.appending(path: "Rolls", directoryHint: .isDirectory)) {
+    init(root: URL = URL.documentsDirectory) {
         self.root = root
     }
 
-    /// 次の連番で保存し、保存先を返す。M2 で番号は Roll / Shot から渡す形に変える。
-    func saveNext(_ data: Data, rollID: UUID) throws -> URL {
-        let folder = root.appending(path: rollID.uuidString, directoryHint: .isDirectory)
-        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-
-        let used = try FileManager.default.contentsOfDirectory(atPath: folder.path)
-            .compactMap { Int(($0 as NSString).deletingPathExtension) }
-        let url = folder.appending(path: "\((used.max() ?? 0) + 1).jpg")
+    /// 保存して、Documents からの相対パスを返す
+    func save(_ data: Data, rollID: UUID, index: Int) throws -> String {
+        let fileName = "Rolls/\(rollID.uuidString)/\(index).jpg"
+        let url = root.appending(path: fileName)
+        try FileManager.default.createDirectory(
+            at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
         try data.write(to: url, options: .atomic)
-        return url
+        return fileName
+    }
+
+    func delete(fileName: String) {
+        try? FileManager.default.removeItem(at: root.appending(path: fileName))
     }
 }

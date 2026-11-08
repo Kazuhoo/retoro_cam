@@ -25,5 +25,5 @@ protocol CameraControlling: AnyObject {
     func start() async
     func stop() async
     func attachPreview(_ layer: AVCaptureVideoPreviewLayer)
-    func capture() async throws -> CapturedPhoto
+    func capture(flash: Bool) async throws -> CapturedPhoto
 }
