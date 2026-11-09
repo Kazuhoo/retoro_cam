@@ -21,27 +21,34 @@ struct SettingsScreen: View {
             Theme.Common.background.ignoresSafeArea()
             VStack(spacing: Theme.Settings.gap) {
                 header
-                Grid(horizontalSpacing: Theme.Settings.columnGap, verticalSpacing: Theme.Settings.gap) {
-                    GridRow {
-                        SettingsToggleRow(title: "日付の焼き込み", isOn: $settings.dateStamp)
-                        SettingsToggleRow(title: "光漏れ", isOn: $settings.lightLeak)
-                    }
-                    GridRow {
-                        SettingsToggleRow(title: "巻き上げ音・効果音", isOn: $settings.sound)
-                        SettingsToggleRow(title: "振動（ハプティクス）", isOn: $settings.haptics)
-                    }
-                    GridRow {
-                        SettingsLinkRow(title: "使い方を見る", isEnabled: true, action: onShowGuide)
-                        SettingsLinkRow(title: "購入を復元", isEnabled: !model.isRestoring) {
-                            Task { await model.restore() }
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: Theme.Settings.gap) {
+                        Grid(horizontalSpacing: Theme.Settings.columnGap, verticalSpacing: Theme.Settings.gap) {
+                            GridRow {
+                                SettingsToggleRow(title: Text("日付の焼き込み"), isOn: $settings.dateStamp)
+                                SettingsToggleRow(title: Text("光漏れ"), isOn: $settings.lightLeak)
+                            }
+                            GridRow {
+                                SettingsToggleRow(title: Text("巻き上げ音・効果音"), isOn: $settings.sound)
+                                SettingsToggleRow(title: Text("振動（ハプティクス）"), isOn: $settings.haptics)
+                            }
+                            GridRow {
+                                SettingsLinkRow(title: "使い方を見る", isEnabled: true, action: onShowGuide)
+                                SettingsLinkRow(title: "購入を復元", isEnabled: !model.isRestoring) {
+                                    Task { await model.restore() }
+                                }
+                            }
+                            GridRow {
+                                linkRow("プライバシーポリシー", url: AppLinks.privacyPolicy)
+                                linkRow("利用規約", url: AppLinks.terms)
+                            }
                         }
-                    }
-                    GridRow {
-                        linkRow("プライバシーポリシー", url: AppLinks.privacyPolicy)
-                        linkRow("利用規約", url: AppLinks.terms)
+                        #if DEBUG
+                        DebugSettingsSection()
+                        #endif
                     }
                 }
-                Spacer(minLength: 0)
+                .scrollBounceBehavior(.basedOnSize)
                 footer
             }
             .padding(.top, Theme.Settings.topPadding)
@@ -85,14 +92,14 @@ struct SettingsScreen: View {
     }
 }
 
-private struct SettingsToggleRow: View {
-    let title: LocalizedStringKey
+struct SettingsToggleRow: View {
+    let title: Text
     @Binding var isOn: Bool
 
     var body: some View {
         Button { isOn.toggle() } label: {
             HStack {
-                Text(title).font(Theme.Settings.row)
+                title.font(Theme.Settings.row)
                 Spacer(minLength: 8)
                 track
             }
@@ -137,7 +144,7 @@ private struct SettingsLinkRow: View {
     }
 }
 
-private extension View {
+extension View {
     func settingsRow() -> some View {
         padding(.horizontal, Theme.Settings.rowPadding)
             .frame(maxWidth: .infinity, minHeight: Theme.Settings.rowHeight)

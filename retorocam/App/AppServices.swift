@@ -22,8 +22,10 @@ struct AppServices {
 
     private static func makePurchases() -> any PurchaseProviding {
         #if DEBUG
-        if let fake = FakePurchases() { return fake }
-        #endif
+        let base: any PurchaseProviding = FakePurchases() ?? StoreKitPurchases()
+        return DebugPurchases(base: base)
+        #else
         return StoreKitPurchases()
+        #endif
     }
 }

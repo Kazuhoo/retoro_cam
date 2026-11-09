@@ -37,10 +37,10 @@ final class RollStore {
         (try? context.fetch(FetchDescriptor<Roll>())) ?? []
     }
 
-    func send(_ roll: Roll, now: Date) {
+    func send(_ roll: Roll, now: Date, duration: TimeInterval) {
         roll.state = .developing
         roll.sentAt = now
-        roll.deliverAt = now.addingTimeInterval(Roll.developDuration)
+        roll.deliverAt = now.addingTimeInterval(duration)
         save()
     }
 

@@ -3,6 +3,14 @@ import Foundation
 extension Roll {
     static let developDuration: TimeInterval = 72 * 60 * 60
 
+    /// これから現像に出すロールの待ち時間（お届けと通知の両方に使う）
+    static var developDurationForSending: TimeInterval {
+        #if DEBUG
+        if DebugSettings.shared.instantDevelop { return DebugSettings.instantDevelopDuration }
+        #endif
+        return developDuration
+    }
+
     enum RemainingTime: Equatable {
         case hours(Int), minutes(Int)
     }
@@ -21,8 +29,8 @@ extension Roll {
     }
 
     func deliveryProgress(at now: Date) -> Double {
-        guard let sentAt else { return 0 }
-        return min(max(now.timeIntervalSince(sentAt) / Self.developDuration, 0), 1)
+        guard let sentAt, let deliverAt, deliverAt > sentAt else { return 0 }
+        return min(max(now.timeIntervalSince(sentAt) / deliverAt.timeIntervalSince(sentAt), 0), 1)
     }
 
     func remainingTime(at now: Date) -> RemainingTime {
@@ -38,6 +46,16 @@ extension Roll {
         let start = DeliveryFormat.day(first)
         let end = DeliveryFormat.day(last)
         return start == end ? start : start + separator + end
+    }
+}
+
+enum DeliveryRefresh {
+    /// 届いたかどうかを見直す間隔（秒）
+    static var interval: Double {
+        #if DEBUG
+        if DebugSettings.shared.instantDevelop { return 2 }
+        #endif
+        return 30
     }
 }
 
