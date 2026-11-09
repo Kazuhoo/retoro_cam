@@ -10,7 +10,8 @@ struct RootView: View {
         case .shooting:
             CameraScreen(model: model, services: services,
                          onSend: { router.screen = .sendLab },
-                         onOpenDarkroom: { router.screen = .darkroom })
+                         onOpenDarkroom: { router.screen = .darkroom },
+                         onOpenSettings: { router.screen = .settings })
         case .sendLab:
             if let roll = model.roll {
                 SendLabScreen(roll: roll, services: services,
@@ -31,7 +32,26 @@ struct RootView: View {
             PurchaseScreen(request: request, isMidRoll: model.hasShootingRoll, purchases: services.purchases,
                            onBack: { router.screen = .filmLoad(selected: $0) },
                            onOpen: open)
+        case .settings:
+            SettingsScreen(settings: services.settings, purchases: services.purchases,
+                           onBack: { router.screen = .shooting },
+                           onShowGuide: { router.screen = .onboarding(isReplay: true) })
+        case .onboarding(let isReplay):
+            OnboardingScreen(isReplay: isReplay) {
+                if isReplay {
+                    router.screen = .settings
+                } else {
+                    await finishFirstOnboarding()
+                }
+            }
         }
+    }
+
+    /// カメラの許可を求めてから進む（拒否されても止めない）
+    private func finishFirstOnboarding() async {
+        await model.requestAccess()
+        services.settings.hasSeenOnboarding = true
+        router.screen = model.hasShootingRoll ? .shooting : .filmLoad(selected: .sunshine)
     }
 
     private func open(_ camera: CameraID) {

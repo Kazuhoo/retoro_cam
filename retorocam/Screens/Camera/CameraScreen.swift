@@ -5,7 +5,9 @@ struct CameraScreen: View {
     let services: AppServices
     let onSend: () -> Void
     let onOpenDarkroom: () -> Void
+    let onOpenSettings: () -> Void
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
         content
@@ -34,13 +36,29 @@ struct CameraScreen: View {
         case .unknown:
             Theme.Common.background.ignoresSafeArea()
         case .denied:
-            ZStack {
-                Theme.Common.background.ignoresSafeArea()
-                Text("カメラが使えません。設定アプリでカメラをオンにしてください")
-                    .foregroundStyle(Theme.Common.text)
-            }
+            denied
         case .granted:
             shooting
+        }
+    }
+
+    private var denied: some View {
+        ZStack {
+            Theme.Common.background.ignoresSafeArea()
+            VStack(spacing: 18) {
+                Text("カメラが使えません。設定アプリでカメラをオンにしてください")
+                    .foregroundStyle(Theme.Common.text)
+                Button {
+                    if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+                } label: {
+                    Text("設定を開く")
+                        .font(Theme.Text.develop)
+                        .foregroundStyle(Theme.Common.background)
+                        .frame(height: Theme.Status.developHeight)
+                        .padding(.horizontal, Theme.Status.developPadding)
+                        .background(Theme.Common.accent, in: Capsule())
+                }
+            }
         }
     }
 
@@ -51,7 +69,8 @@ struct CameraScreen: View {
             ZStack(alignment: .topLeading) {
                 HStack(alignment: .top, spacing: Theme.Layout.columnGap) {
                     viewfinder.frame(width: layout.viewfinder.width, height: layout.viewfinder.height)
-                    ShootingControls(model: model, theme: theme, onSend: onSend, onOpenDarkroom: onOpenDarkroom)
+                    ShootingControls(model: model, theme: theme, onSend: onSend,
+                                     onOpenDarkroom: onOpenDarkroom, onOpenSettings: onOpenSettings)
                         .frame(width: Theme.Layout.columnWidth, height: layout.viewfinder.height)
                 }
                 .padding(.top, Theme.Layout.topPadding)

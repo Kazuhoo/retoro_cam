@@ -36,6 +36,6 @@ final class FakePurchases: PurchaseProviding {
         }
     }
 
-    func restore() async -> Bool { true }
+    func restore() async -> Bool { mode != "failed" }
 }
 #endif

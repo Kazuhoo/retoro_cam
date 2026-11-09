@@ -1,0 +1,38 @@
+import Foundation
+import Observation
+
+/// 設定画面の値（UserDefaults に保存する）
+@Observable
+final class AppSettings {
+    private enum Key {
+        static let dateStamp = "settings.dateStamp"
+        static let lightLeak = "settings.lightLeak"
+        static let sound = "settings.sound"
+        static let haptics = "settings.haptics"
+        static let hasSeenOnboarding = "settings.hasSeenOnboarding"
+    }
+
+    @ObservationIgnored private let defaults: UserDefaults
+
+    var dateStamp: Bool { didSet { defaults.set(dateStamp, forKey: Key.dateStamp) } }
+    var lightLeak: Bool { didSet { defaults.set(lightLeak, forKey: Key.lightLeak) } }
+    /// 巻き上げ音・効果音（シャッター音は含まない）。音は M7 で入れる
+    var sound: Bool { didSet { defaults.set(sound, forKey: Key.sound) } }
+    var haptics: Bool {
+        didSet {
+            defaults.set(haptics, forKey: Key.haptics)
+            Haptics.isEnabled = haptics
+        }
+    }
+    var hasSeenOnboarding: Bool { didSet { defaults.set(hasSeenOnboarding, forKey: Key.hasSeenOnboarding) } }
+
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
+        dateStamp = defaults.object(forKey: Key.dateStamp) as? Bool ?? true
+        lightLeak = defaults.object(forKey: Key.lightLeak) as? Bool ?? false
+        sound = defaults.object(forKey: Key.sound) as? Bool ?? true
+        haptics = defaults.object(forKey: Key.haptics) as? Bool ?? true
+        hasSeenOnboarding = defaults.bool(forKey: Key.hasSeenOnboarding)
+        Haptics.isEnabled = haptics
+    }
+}

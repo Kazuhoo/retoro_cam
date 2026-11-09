@@ -6,6 +6,7 @@ struct ShootingControls: View {
     let theme: CameraTheme
     let onSend: () -> Void
     let onOpenDarkroom: () -> Void
+    let onOpenSettings: () -> Void
 
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
@@ -73,8 +74,7 @@ struct ShootingControls: View {
                 FlashSwitch(isOn: model.isFlashOn, iconColor: theme.sub) { model.setFlash($0) }
             }
             iconButton("photo", showsDot: model.hasNewDelivery, action: onOpenDarkroom)
-            // 行き先は M5
-            iconButton("gearshape", showsDot: false) {}
+            iconButton("gearshape", showsDot: false, action: onOpenSettings)
         }
     }
 

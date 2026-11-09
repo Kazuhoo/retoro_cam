@@ -16,10 +16,15 @@ struct retorocamApp: App {
             self.services = services
             let model = CameraModel.makeDefault(services: services)
             _model = State(initialValue: model)
-            _router = State(initialValue: AppRouter(screen: model.hasShootingRoll ? .shooting : .filmLoad(selected: .sunshine)))
+            _router = State(initialValue: AppRouter(screen: Self.firstScreen(model: model, settings: services.settings)))
         } catch {
             fatalError("データベースを開けません: \(error)")
         }
+    }
+
+    private static func firstScreen(model: CameraModel, settings: AppSettings) -> AppRouter.Screen {
+        guard settings.hasSeenOnboarding else { return .onboarding(isReplay: false) }
+        return model.hasShootingRoll ? .shooting : .filmLoad(selected: .sunshine)
     }
 
     var body: some Scene {

@@ -10,7 +10,10 @@ final class SimulatedCameraService: CameraControlling {
     /// 次の1枚を縦持ちの写真として扱う
     var shootsPortrait = false
 
-    func requestAuthorization() async -> Bool { true }
+    /// RETORO_CAMERA_DENIED を渡すと、拒否されたときの画面を確認できる
+    func requestAuthorization() async -> Bool {
+        ProcessInfo.processInfo.environment["RETORO_CAMERA_DENIED"] == nil
+    }
     func start() async { onRunningChange?(true) }
     func stop() async { onRunningChange?(false) }
     func attachPreview(_ layer: AVCaptureVideoPreviewLayer) {}
