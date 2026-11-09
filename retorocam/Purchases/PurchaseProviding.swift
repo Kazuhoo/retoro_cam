@@ -13,6 +13,8 @@ protocol PurchaseProviding: AnyObject {
 
     /// App Store から取得した、その地域の価格。取得できなければ nil
     func displayPrice(for item: StoreItem) -> String?
+    /// 起動時の購入状況の読み込みが終わるまで待つ
+    func waitForOwnership() async
     /// 価格がまだなければ取得する
     func loadPrices() async
     func purchase(_ item: StoreItem) async -> PurchaseOutcome

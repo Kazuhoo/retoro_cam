@@ -10,6 +10,7 @@ final class AppSettings {
         static let sound = "settings.sound"
         static let haptics = "settings.haptics"
         static let hasSeenOnboarding = "settings.hasSeenOnboarding"
+        static let launchCount = "settings.launchCount"
     }
 
     @ObservationIgnored private let defaults: UserDefaults
@@ -26,6 +27,9 @@ final class AppSettings {
     }
     var hasSeenOnboarding: Bool { didSet { defaults.set(hasSeenOnboarding, forKey: Key.hasSeenOnboarding) } }
 
+    /// これまでの起動回数（今回を含む）
+    private(set) var launchCount: Int
+
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         dateStamp = defaults.object(forKey: Key.dateStamp) as? Bool ?? true
@@ -33,6 +37,12 @@ final class AppSettings {
         sound = defaults.object(forKey: Key.sound) as? Bool ?? true
         haptics = defaults.object(forKey: Key.haptics) as? Bool ?? true
         hasSeenOnboarding = defaults.bool(forKey: Key.hasSeenOnboarding)
+        launchCount = defaults.integer(forKey: Key.launchCount)
         Haptics.isEnabled = haptics
+    }
+
+    func recordLaunch() {
+        launchCount += 1
+        defaults.set(launchCount, forKey: Key.launchCount)
     }
 }

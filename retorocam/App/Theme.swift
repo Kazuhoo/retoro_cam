@@ -80,7 +80,6 @@ enum Theme {
         static let stripeHeight: CGFloat = 3
         static let stripesTotalHeight: CGFloat = 16
         static let iconSize: CGFloat = 44
-        static let adHeight: CGFloat = 50
     }
 
     enum Text {

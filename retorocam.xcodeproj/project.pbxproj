@@ -6,9 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FCB56C0730A0B5D000E2CF92 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = FCB56C0530A0B5D000E2CF92 /* GoogleMobileAds */; };
+		FCB56C0830A0B5D000E2CF92 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = FCB56C0630A0B5D000E2CF92 /* GoogleUserMessagingPlatform */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		FCB56C0130A0B5D000E2CF92 /* RetoroCam.storekit */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstorekit; path = RetoroCam.storekit; sourceTree = "<group>"; };
 		FCB56B9930A0B5C700E2CF92 /* retorocam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = retorocam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCB56C0130A0B5D000E2CF92 /* RetoroCam.storekit */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstorekit; path = RetoroCam.storekit; sourceTree = "<group>"; };
+		FCB56C0230A0B5D000E2CF92 /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = App.xcconfig; path = Config/App.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -30,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB56C0730A0B5D000E2CF92 /* GoogleMobileAds in Frameworks */,
+				FCB56C0830A0B5D000E2CF92 /* GoogleUserMessagingPlatform in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,6 +47,7 @@
 		FCB56B9030A0B5C700E2CF92 = {
 			isa = PBXGroup;
 			children = (
+				FCB56C0230A0B5D000E2CF92 /* App.xcconfig */,
 				FCB56C0130A0B5D000E2CF92 /* RetoroCam.storekit */,
 				FCB56B9B30A0B5C700E2CF92 /* retorocam */,
 				FCB56BB030A0B5C700E2CF92 /* LUTs */,
@@ -75,6 +84,8 @@
 			);
 			name = retorocam;
 			packageProductDependencies = (
+				FCB56C0530A0B5D000E2CF92 /* GoogleMobileAds */,
+				FCB56C0630A0B5D000E2CF92 /* GoogleUserMessagingPlatform */,
 			);
 			productName = retorocam;
 			productReference = FCB56B9930A0B5C700E2CF92 /* retorocam.app */;
@@ -105,6 +116,10 @@
 			);
 			mainGroup = FCB56B9030A0B5C700E2CF92;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FCB56C0330A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				FCB56C0430A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FCB56B9A30A0B5C700E2CF92 /* Products */;
 			projectDirPath = "";
@@ -259,6 +274,7 @@
 		};
 		FCB56BA530A0B5CA00E2CF92 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCB56C0230A0B5D000E2CF92 /* App.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -298,6 +314,7 @@
 		};
 		FCB56BA630A0B5CA00E2CF92 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCB56C0230A0B5D000E2CF92 /* App.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -357,6 +374,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FCB56C0330A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.12.0;
+			};
+		};
+		FCB56C0430A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FCB56C0530A0B5D000E2CF92 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCB56C0330A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		FCB56C0630A0B5D000E2CF92 /* GoogleUserMessagingPlatform */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCB56C0430A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */;
+			productName = GoogleUserMessagingPlatform;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FCB56B9130A0B5C700E2CF92 /* Project object */;
 }

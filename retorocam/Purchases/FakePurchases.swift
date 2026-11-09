@@ -24,6 +24,7 @@ final class FakePurchases: PurchaseProviding {
     }
 
     func loadPrices() async {}
+    func waitForOwnership() async {}
 
     func purchase(_ item: StoreItem) async -> PurchaseOutcome {
         switch mode {

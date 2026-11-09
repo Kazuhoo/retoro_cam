@@ -12,6 +12,7 @@ struct retorocamApp: App {
         do {
             let container = try ModelContainer(for: Roll.self, Shot.self)
             let services = AppServices.makeDefault(context: container.mainContext)
+            services.settings.recordLaunch()
             self.container = container
             self.services = services
             let model = CameraModel.makeDefault(services: services)

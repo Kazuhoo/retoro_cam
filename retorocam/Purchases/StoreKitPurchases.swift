@@ -11,6 +11,7 @@ final class StoreKitPurchases: PurchaseProviding {
 
     private var products: [String: Product] = [:]
     @ObservationIgnored private var updates: Task<Void, Never>?
+    @ObservationIgnored private var initialLoad: Task<Void, Never>?
     private static let logger = Logger(subsystem: "retorocam", category: "Purchases")
 
     init() {
@@ -23,7 +24,11 @@ final class StoreKitPurchases: PurchaseProviding {
                 await self.refreshOwned()
             }
         }
-        Task { await refreshOwned() }
+        initialLoad = Task { await refreshOwned() }
+    }
+
+    func waitForOwnership() async {
+        await initialLoad?.value
     }
 
     func displayPrice(for item: StoreItem) -> String? {
