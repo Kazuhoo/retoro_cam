@@ -9,6 +9,7 @@ struct AppServices {
     let library: PhotoLibrarySaver
     let purchases: any PurchaseProviding
     let settings: AppSettings
+    let ads: AdsController
 
     static func makeDefault(context: ModelContext) -> AppServices {
         #if DEBUG
@@ -16,8 +17,11 @@ struct AppServices {
         #else
         let clock: any Clock = SystemClock()
         #endif
+        let settings = AppSettings()
+        let purchases = makePurchases()
         return AppServices(clock: clock, rolls: RollStore(context: context), photos: PhotoStore(),
-                           notifier: DeliveryNotifier(), library: PhotoLibrarySaver(), purchases: makePurchases(), settings: AppSettings())
+                           notifier: DeliveryNotifier(), library: PhotoLibrarySaver(), purchases: purchases, settings: settings,
+                           ads: AdsController(settings: settings, purchases: purchases))
     }
 
     private static func makePurchases() -> any PurchaseProviding {

@@ -4,8 +4,19 @@ struct RootView: View {
     let model: CameraModel
     let services: AppServices
     let router: AppRouter
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
+        content
+            .environment(services.ads)
+            // ATT は画面が前面にあるときしか出せない。オンボーディングの完了でも見直す
+            .task(id: "\(scenePhase)-\(services.settings.hasSeenOnboarding)") {
+                if scenePhase == .active { await services.ads.startIfNeeded() }
+            }
+    }
+
+    @ViewBuilder
+    private var content: some View {
         switch router.screen {
         case .shooting:
             CameraScreen(model: model, services: services,

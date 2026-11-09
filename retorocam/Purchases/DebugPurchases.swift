@@ -22,6 +22,7 @@ final class DebugPurchases: PurchaseProviding {
 
     func displayPrice(for item: StoreItem) -> String? { base.displayPrice(for: item) }
     func loadPrices() async { await base.loadPrices() }
+    func waitForOwnership() async { await base.waitForOwnership() }
     func purchase(_ item: StoreItem) async -> PurchaseOutcome { await base.purchase(item) }
     func restore() async -> Bool { await base.restore() }
 }

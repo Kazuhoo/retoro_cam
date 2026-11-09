@@ -6,6 +6,7 @@ struct SettingsScreen: View {
     let onShowGuide: () -> Void
     @State private var model: SettingsModel
     @Environment(\.openURL) private var openURL
+    @Environment(AdsController.self) private var ads
 
     init(settings: AppSettings, purchases: any PurchaseProviding,
          onBack: @escaping () -> Void, onShowGuide: @escaping () -> Void) {
@@ -41,6 +42,14 @@ struct SettingsScreen: View {
                             GridRow {
                                 linkRow("プライバシーポリシー", url: AppLinks.privacyPolicy)
                                 linkRow("利用規約", url: AppLinks.terms)
+                            }
+                            if ads.isPrivacyOptionsRequired {
+                                GridRow {
+                                    SettingsLinkRow(title: "プライバシー設定", isEnabled: true) {
+                                        Task { await ads.presentPrivacyOptions() }
+                                    }
+                                    Color.clear.frame(height: 0)
+                                }
                             }
                         }
                         #if DEBUG

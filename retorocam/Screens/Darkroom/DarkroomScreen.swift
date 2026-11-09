@@ -23,7 +23,7 @@ struct DarkroomScreen: View {
                     arrivedCard
                 }
                 .frame(maxHeight: .infinity)
-                Color.clear.frame(height: Theme.Layout.adHeight)   // 広告の場所（M6）
+                AdSlot()
             }
             .padding(.top, Theme.Darkroom.topPadding)
             .padding(.horizontal, Theme.Darkroom.horizontalPadding)
