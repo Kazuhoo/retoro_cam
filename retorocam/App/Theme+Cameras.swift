@@ -42,6 +42,48 @@ extension Theme {
         static let doneGap: CGFloat = 48
     }
 
+    enum Settings {
+        static let topPadding: CGFloat = 12
+        static let horizontalPadding: CGFloat = 16
+        static let gap: CGFloat = 10
+        static let columnGap: CGFloat = 20
+        static let rowHeight: CGFloat = 50
+        static let rowRadius: CGFloat = 14
+        static let rowPadding: CGFloat = 18
+        static let row = Font.system(size: 14)
+        static let footer = Font.system(size: 12)
+        static let trackOn = Color(hex: 0xF08A24)
+        static let trackOff = Color(hex: 0x4A473F)
+        static let trackSize = CGSize(width: 46, height: 28)
+        static let knob: CGFloat = 22
+    }
+
+    enum Onboarding {
+        static let topPadding: CGFloat = 12
+        static let horizontalPadding: CGFloat = 16
+        static let gap: CGFloat = 48
+        static let panel = CGSize(width: 340, height: 230)
+        static let panelRadius: CGFloat = 18
+        static let iconBox = Color(hex: 0x2E2C27)
+        static let label = Font.system(size: 12, weight: .bold)
+        static let title = Font.system(size: 24, weight: .bold)
+        static let body = Font.system(size: 14)
+        static let bodyColor = Color(hex: 0xC9C3B8)
+        static let dotOff = Color(hex: 0x3A3832)
+        static let dotWidth: CGFloat = 8
+        static let dotWidthOn: CGFloat = 22
+        static let phoneLine = Color(hex: 0x8A847A)
+        static let dialLight = Color(hex: 0x4E4A41)
+        static let dialDark = Color(hex: 0x22201C)
+        static let dialEdge = Color(hex: 0x2E2C27)
+        static let counter = Color(hex: 0x0E0D0C)
+        static let envelope = Color(hex: 0x3A3833)
+        static let envelopeFlap = Color(hex: 0x2E2C28)
+        static let labelPaper = Color(hex: 0xF4EEE2)
+        static let labelText = Color(hex: 0x3B3328)
+        static let nextHeight: CGFloat = 48
+    }
+
     enum Pack {
         static let size = CGSize(width: 380, height: 200)
         static let flapHeight: CGFloat = 34

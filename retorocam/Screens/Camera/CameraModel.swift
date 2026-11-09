@@ -32,14 +32,16 @@ final class CameraModel {
     private let processor = FilmProcessor()
     private let photos = PhotoStore()
     private let rolls: RollStore
+    private let settings: AppSettings
     private var isCapturing = false
     private var lastPressedFrame: Int?
     private static let logger = Logger(subsystem: "retorocam", category: "Camera")
 
-    init(camera: any CameraControlling, clock: any Clock, rolls: RollStore) {
+    init(camera: any CameraControlling, clock: any Clock, rolls: RollStore, settings: AppSettings) {
         self.camera = camera
         self.clock = clock
         self.rolls = rolls
+        self.settings = settings
         roll = rolls.shootingRoll()
         camera.onRunningChange = { [weak self] in self?.isSessionRunning = $0 }
     }
@@ -54,10 +56,13 @@ final class CameraModel {
     /// 加工中のコマが残っている間は現像に出せない
     var canSend: Bool { isEmpty && reservedFrames.isEmpty }
 
+    func requestAccess() async {
+        guard access == .unknown else { return }
+        access = await camera.requestAuthorization() ? .granted : .denied
+    }
+
     func activate() async {
-        if access == .unknown {
-            access = await camera.requestAuthorization() ? .granted : .denied
-        }
+        await requestAccess()
         if access == .granted { await camera.start() }
     }
 
@@ -73,7 +78,8 @@ final class CameraModel {
 
         let flash = isFlashOn
         let takenAt = clock.now
-        let options = CaptureOptions()
+        // 日付と光漏れは撮った瞬間の設定で焼き込む
+        let options = CaptureOptions(dateStamp: settings.dateStamp, lightLeak: settings.lightLeak)
         let look = cameraID.look
         reservedFrames.insert(frame)
         lastPressedFrame = frame
@@ -202,9 +208,11 @@ final class CameraModel {
 extension CameraModel {
     static func makeDefault(services: AppServices) -> CameraModel {
         #if targetEnvironment(simulator)
-        return CameraModel(camera: SimulatedCameraService(), clock: services.clock, rolls: services.rolls)
+        return CameraModel(camera: SimulatedCameraService(), clock: services.clock, rolls: services.rolls,
+                           settings: services.settings)
         #else
-        return CameraModel(camera: CameraService(), clock: services.clock, rolls: services.rolls)
+        return CameraModel(camera: CameraService(), clock: services.clock, rolls: services.rolls,
+                           settings: services.settings)
         #endif
     }
 }
