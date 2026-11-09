@@ -33,7 +33,7 @@ struct DarkroomScreen: View {
         .task {
             while !Task.isCancelled {
                 model.refresh()
-                try? await Task.sleep(for: .seconds(30))
+                try? await Task.sleep(for: .seconds(DeliveryRefresh.interval))
             }
         }
     }

@@ -22,7 +22,7 @@ struct CameraScreen: View {
             .task {
                 while !Task.isCancelled {
                     model.refreshDeliveries()
-                    try? await Task.sleep(for: .seconds(30))
+                    try? await Task.sleep(for: .seconds(DeliveryRefresh.interval))
                 }
             }
             .onDisappear {
@@ -100,8 +100,10 @@ struct CameraScreen: View {
             Text(verbatim: theme.name).font(Theme.Text.name)
             Text(verbatim: "・ 24EXP").font(Theme.Text.exposure)
             #if DEBUG
-            DebugRollMenu(model: model)
-            DebugClockMenu(services: services) { model.refreshDeliveries() }
+            if !DebugSettings.shared.hidesDebugButtons {
+                DebugRollMenu(model: model)
+                DebugClockMenu(services: services) { model.refreshDeliveries() }
+            }
             #endif
             Spacer(minLength: 0)
             Image(systemName: "triangle.fill").font(.system(size: 9))
