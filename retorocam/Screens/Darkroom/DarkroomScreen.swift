@@ -45,8 +45,7 @@ struct DarkroomScreen: View {
             DebugClockMenu(services: services) { model.refresh() }
             #endif
             Spacer()
-            // 行き先は M4
-            headerButton("カメラを見る") {}
+            headerButton("カメラを見る") { router.screen = .filmLoad(selected: camera.cameraID) }
             headerButton("カメラに戻る") { router.screen = .shooting }
         }
     }
