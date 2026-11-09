@@ -73,7 +73,8 @@ nonisolated enum FilmEffects {
         shadow.shadowColor = UIColor(red: 1, green: 0.45, blue: 0.1, alpha: 0.8)
         shadow.shadowBlurRadius = fontSize * 0.25
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.monospacedDigitSystemFont(ofSize: fontSize, weight: .semibold),
+            .font: UIFont(name: "VT323-Regular", size: fontSize * 1.3)
+                ?? UIFont.monospacedDigitSystemFont(ofSize: fontSize, weight: .semibold),
             .foregroundColor: UIColor(red: 1.0, green: 0.6, blue: 0.2, alpha: 0.95),
             .shadow: shadow,
         ]

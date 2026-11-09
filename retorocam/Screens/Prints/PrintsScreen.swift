@@ -42,7 +42,7 @@ struct PrintsScreen: View {
                 .foregroundStyle(Theme.Common.subText)
             Spacer()
             Text(verbatim: model.showsPhotos ? "\(model.index + 1)/\(model.shots.count)" : "")
-                .font(.system(size: 18, design: .monospaced))
+                .font(Theme.dotFont(size: 23))
                 .frame(width: 70, alignment: .trailing)
         }
     }

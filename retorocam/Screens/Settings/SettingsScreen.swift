@@ -4,15 +4,17 @@ struct SettingsScreen: View {
     let settings: AppSettings
     let onBack: () -> Void
     let onShowGuide: () -> Void
+    let onShowLicenses: () -> Void
     @State private var model: SettingsModel
     @Environment(\.openURL) private var openURL
     @Environment(AdsController.self) private var ads
 
     init(settings: AppSettings, purchases: any PurchaseProviding,
-         onBack: @escaping () -> Void, onShowGuide: @escaping () -> Void) {
+         onBack: @escaping () -> Void, onShowGuide: @escaping () -> Void, onShowLicenses: @escaping () -> Void) {
         self.settings = settings
         self.onBack = onBack
         self.onShowGuide = onShowGuide
+        self.onShowLicenses = onShowLicenses
         _model = State(initialValue: SettingsModel(purchases: purchases))
     }
 
@@ -43,11 +45,13 @@ struct SettingsScreen: View {
                                 linkRow("プライバシーポリシー", url: AppLinks.privacyPolicy)
                                 linkRow("利用規約", url: AppLinks.terms)
                             }
-                            if ads.isPrivacyOptionsRequired {
-                                GridRow {
+                            GridRow {
+                                SettingsLinkRow(title: "ライセンス", isEnabled: true, action: onShowLicenses)
+                                if ads.isPrivacyOptionsRequired {
                                     SettingsLinkRow(title: "プライバシー設定", isEnabled: true) {
                                         Task { await ads.presentPrivacyOptions() }
                                     }
+                                } else {
                                     Color.clear.frame(height: 0)
                                 }
                             }

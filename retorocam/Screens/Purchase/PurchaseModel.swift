@@ -63,6 +63,8 @@ final class PurchaseModel {
     private func finishPack() {
         guard !isOpeningPack else { return }
         isOpeningPack = true
+        Haptics.packTorn()
+        SoundPlayer.play(.packTear)
         Task {
             try? await Task.sleep(for: .seconds(Self.tearSettle))
             stage = .done

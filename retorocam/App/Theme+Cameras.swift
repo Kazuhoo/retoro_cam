@@ -2,6 +2,10 @@ import SwiftUI
 
 /// カメラを選ぶ・買う画面の値
 extension Theme {
+    /// 24EXP・残り枚数・日付などのドット風の書体
+    static let dotFontName = "VT323-Regular"
+    static func dotFont(size: CGFloat) -> Font { .custom(dotFontName, fixedSize: size) }
+
     static let lightButton = Color(hex: 0xF2EDE4)
 
     enum FilmLoad {
@@ -16,7 +20,7 @@ extension Theme {
         static let border = Color(hex: 0x34312B)
         static let ownedBadge = Color(hex: 0x2E4A33)
         static let illustrationWidth: CGFloat = 112
-        static let name = Font.system(size: 15, weight: .bold, design: .monospaced)
+        static let nameSize: CGFloat = 15
         static let summary = Font.system(size: 11)
         static let badge = Font.system(size: 10, weight: .bold)
         static let sampleHeight: CGFloat = 30
@@ -34,7 +38,9 @@ extension Theme {
         static let largePadding: CGFloat = 8
         static let smallPadding: CGFloat = 6
         static let illustrationWidth: CGFloat = 96
-        static let name = Font.system(size: 26, weight: .bold, design: .monospaced)
+        static let nameSize: CGFloat = 26
+        /// 4台セットの名前（日本語なのでシステム書体）
+        static let bundleName = Font.system(size: 26, weight: .bold)
         static let body = Font.system(size: 13)
         static let note = Font.system(size: 12)
         static let message = Color(hex: 0xC9C3B8)
@@ -88,7 +94,8 @@ extension Theme {
         static let size = CGSize(width: 380, height: 200)
         static let flapHeight: CGFloat = 34
         static let illustrationWidth: CGFloat = 120
-        static let name = Font.system(size: 28, weight: .bold, design: .monospaced)
+        static let nameSize: CGFloat = 28
+        static let bundleName = Font.system(size: 28, weight: .bold)
         static let title = Font.system(size: 15, weight: .bold)
         static let hint = Font.system(size: 12)
         static let fullTear: CGFloat = 300

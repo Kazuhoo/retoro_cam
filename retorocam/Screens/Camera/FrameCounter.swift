@@ -17,6 +17,8 @@ struct FrameCounter: View {
         .overlay { depthShade }
         .clipShape(shape)
         .overlay { shape.stroke(Theme.Parts.ring, lineWidth: 1.5) }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("残り\(remaining)枚"))
     }
 
     private var shape: RoundedRectangle {

@@ -21,7 +21,7 @@ struct PurchaseDoneView: View {
     private func singleLayout(_ camera: CameraID) -> some View {
         HStack(spacing: Theme.Purchase.doneGap) {
             popping(index: 0, spread: 0) { CameraIllustration(camera: camera) }
-            messageColumn(name: Text(verbatim: camera.theme.name), alignment: .leading)
+            messageColumn(name: Text(verbatim: camera.theme.name).font(camera.nameFont(size: Theme.Purchase.nameSize)), alignment: .leading)
         }
     }
 
@@ -34,7 +34,7 @@ struct PurchaseDoneView: View {
                     }
                 }
             }
-            messageColumn(name: Text("4台セット"), alignment: .center)
+            messageColumn(name: Text("4台セット").font(Theme.Purchase.bundleName), alignment: .center)
         }
     }
 
@@ -50,7 +50,7 @@ struct PurchaseDoneView: View {
     private func messageColumn(name: Text, alignment: HorizontalAlignment) -> some View {
         let textAlignment: TextAlignment = alignment == .center ? .center : .leading
         return VStack(alignment: alignment, spacing: 12) {
-            name.font(Theme.Purchase.name)
+            name
             VStack(alignment: alignment, spacing: 2) {
                 if isMidRoll {
                     Text("次のカメラとして使えます。")

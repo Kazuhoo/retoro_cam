@@ -45,3 +45,18 @@ extension CameraID {
         }
     }
 }
+
+extension CameraID {
+    private var nameFontName: String {
+        switch self {
+        case .sunshine: "Shrikhand-Regular"
+        case .charcoal: "SpecialElite-Regular"
+        case .pool: "Pacifico-Regular"
+        case .green: "DMSerifDisplay-Regular"
+        case .party: "Monoton-Regular"
+        }
+    }
+
+    /// カメラ名の書体
+    func nameFont(size: CGFloat) -> Font { .custom(nameFontName, fixedSize: size) }
+}

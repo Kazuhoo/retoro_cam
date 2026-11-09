@@ -5,12 +5,15 @@ struct OnboardingArt: View {
     let index: Int
 
     var body: some View {
-        switch index {
-        case 0: StepsArt()
-        case 1: VolumeButtonArt()
-        case 2: WindArt()
-        default: EnvelopeArt()
+        Group {
+            switch index {
+            case 0: StepsArt()
+            case 1: VolumeButtonArt()
+            case 2: WindArt()
+            default: EnvelopeArt()
+            }
         }
+        .accessibilityHidden(true)
     }
 }
 
@@ -44,6 +47,7 @@ private struct StepsArt: View {
 
 private struct VolumeButtonArt: View {
     @State private var pressing = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -63,6 +67,7 @@ private struct VolumeButtonArt: View {
         .frame(width: 250, height: 126)
         .offset(y: 16)
         .onAppear {
+            guard !reduceMotion else { return }
             withAnimation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true)) { pressing = true }
         }
     }
@@ -74,12 +79,13 @@ private struct VolumeButtonArt: View {
 
 private struct WindArt: View {
     @State private var nudged = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         VStack(spacing: 16) {
             HStack(spacing: 12) {
                 Text(verbatim: "23")
-                    .font(.system(size: 22, design: .monospaced))
+                    .font(Theme.dotFont(size: 26))
                     .frame(width: 44, height: 32)
                     .background(Theme.Onboarding.counter, in: RoundedRectangle(cornerRadius: 7))
                     .overlay { RoundedRectangle(cornerRadius: 7).stroke(Theme.Onboarding.dotOff, lineWidth: 1.5) }
@@ -91,6 +97,7 @@ private struct WindArt: View {
                 .offset(x: nudged ? 10 : 0)
         }
         .onAppear {
+            guard !reduceMotion else { return }
             withAnimation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true)) { nudged = true }
         }
     }
@@ -128,7 +135,7 @@ private struct EnvelopeArt: View {
                 Theme.Common.background.frame(height: 22)
             }
             Text(verbatim: "24 EXP")
-                .font(.system(size: 13, design: .monospaced))
+                .font(Theme.dotFont(size: 15))
                 .foregroundStyle(Theme.Onboarding.labelText)
                 .padding(.horizontal, 9)
                 .padding(.vertical, 5)

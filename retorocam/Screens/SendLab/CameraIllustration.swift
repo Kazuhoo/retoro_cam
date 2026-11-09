@@ -27,6 +27,7 @@ struct CameraIllustration: View {
             counter
         }
         .frame(width: Self.size.width, height: Self.size.height)
+        .accessibilityHidden(true)
     }
 
     private var grip: some View {
@@ -108,7 +109,7 @@ struct CameraIllustration: View {
 
     private var counter: some View {
         Text(verbatim: "00")
-            .font(.system(size: 13, design: .monospaced))
+            .font(Theme.dotFont(size: 17))
             .foregroundStyle(Theme.Common.text)
             .frame(width: 30, height: 18)
             .background(Color(hex: 0x050505), in: RoundedRectangle(cornerRadius: 3))

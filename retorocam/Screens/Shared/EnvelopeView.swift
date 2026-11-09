@@ -47,11 +47,11 @@ struct EnvelopeBody: View {
     private var label: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 3) {
-                Text(verbatim: camera.theme.name).font(.system(size: max(13 * scale, 8), weight: .bold))
-                Text(verbatim: period == nil ? "24EXP" : "・ 24EXP").font(.system(size: max(13 * scale, 8), design: .monospaced))
+                Text(verbatim: camera.theme.name).font(camera.nameFont(size: max(14 * scale, 9)))
+                Text(verbatim: period == nil ? "24EXP" : "・ 24EXP").font(Theme.dotFont(size: max(16 * scale, 10)))
             }
             if let period {
-                Text(verbatim: period).font(.system(size: 13 * scale, design: .monospaced))
+                Text(verbatim: period).font(Theme.dotFont(size: 16 * scale))
             }
         }
         .lineLimit(1)

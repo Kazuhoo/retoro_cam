@@ -74,7 +74,11 @@ final class CameraModel {
 
     /// コマ番号は押した瞬間に確定する。加工や保存に失敗したらそのコマを取り消す。
     func shutter() {
-        guard let roll, isSessionRunning, !isCapturing, canShoot, let frame = nextFrame() else { return }
+        guard let roll, isSessionRunning, !isCapturing, canShoot, let frame = nextFrame() else {
+            // 巻き上げ前に押したことを軽く知らせる
+            if isSessionRunning, !isCapturing, !isEmpty, !canShoot { Haptics.shutterBlocked() }
+            return
+        }
 
         let flash = isFlashOn
         let takenAt = clock.now
@@ -140,8 +144,10 @@ final class CameraModel {
             break
         case .advanced(crossedDetent: true):
             Haptics.windTick()
+            SoundPlayer.play(.windTick)
         case .completed:
             Haptics.windComplete()
+            SoundPlayer.play(.windComplete)
         case .bounced:
             bounce()
         }
@@ -164,6 +170,7 @@ final class CameraModel {
         guard on != isFlashOn else { return }
         isFlashOn = on
         Haptics.flashSwitch()
+        SoundPlayer.play(.flashSwitch)
     }
 
     // MARK: - ロール

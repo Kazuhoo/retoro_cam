@@ -19,6 +19,11 @@ struct FlashSwitch: View {
                     .foregroundStyle(iconColor)
             }
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("フラッシュ"))
+        .accessibilityValue(isOn ? Text(verbatim: "ON") : Text(verbatim: "OFF"))
+        .accessibilityAddTraits(.isToggle)
+        .accessibilityAction { onChange(!isOn) }
     }
 
     private var track: some View {

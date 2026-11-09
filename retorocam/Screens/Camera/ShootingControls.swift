@@ -23,7 +23,8 @@ struct ShootingControls: View {
         VStack(alignment: .trailing, spacing: 8) {
             HStack(spacing: 10) {
                 FrameCounter(remaining: model.remaining, progress: model.state.windProgress)
-                WindDial(spin: model.state.spin, isBouncing: model.isBouncing) { model.wind(by: $0) }
+                WindDial(spin: model.state.spin, isBouncing: model.isBouncing,
+                         onWind: { model.wind(by: $0) }, onStep: { model.windByKey() })
             }
             HStack(alignment: .top, spacing: 8) {
                 Text("巻き上げ").font(Theme.Text.hintBold)
@@ -73,12 +74,13 @@ struct ShootingControls: View {
                 .foregroundStyle(theme.sub)
                 FlashSwitch(isOn: model.isFlashOn, iconColor: theme.sub) { model.setFlash($0) }
             }
-            iconButton("photo", showsDot: model.hasNewDelivery, action: onOpenDarkroom)
-            iconButton("gearshape", showsDot: false, action: onOpenSettings)
+            iconButton("photo", label: "現像", showsDot: model.hasNewDelivery, action: onOpenDarkroom)
+            iconButton("gearshape", label: "設定", showsDot: false, action: onOpenSettings)
         }
     }
 
-    private func iconButton(_ symbol: String, showsDot: Bool, action: @escaping () -> Void) -> some View {
+    private func iconButton(_ symbol: String, label: LocalizedStringKey, showsDot: Bool,
+                            action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Image(systemName: symbol)
                 .foregroundStyle(Theme.Common.text)
@@ -93,5 +95,7 @@ struct ShootingControls: View {
                     }
                 }
         }
+        .accessibilityLabel(Text(label))
+        .accessibilityValue(showsDot ? Text("届いた封筒があります") : Text(verbatim: ""))
     }
 }

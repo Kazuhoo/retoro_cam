@@ -43,7 +43,7 @@ struct SendLabScreen: View {
                 .stroke(Theme.SendLab.dash, style: StrokeStyle(lineWidth: 2, dash: [6, 4]))
             VStack(spacing: 6) {
                 Text(verbatim: DeliveryFormat.arrivalShort(model.arrival))
-                    .font(.system(size: 26, design: .monospaced))
+                    .font(Theme.dotFont(size: 32))
                     .foregroundStyle(Theme.Common.accent)
                 Text("お届け予定").font(Theme.Text.hint).foregroundStyle(Theme.Common.subText)
             }

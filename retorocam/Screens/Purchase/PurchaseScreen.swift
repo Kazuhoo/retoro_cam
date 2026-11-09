@@ -83,7 +83,7 @@ struct PurchaseScreen: View {
             .overlay(alignment: .bottomTrailing) {
                 if showsDate {
                     Text(verbatim: "'26 08 14")
-                        .font(.system(size: 13, design: .monospaced))
+                        .font(Theme.dotFont(size: 17))
                         .foregroundStyle(Theme.Common.accent)
                         .padding(8)
                 }
@@ -96,7 +96,7 @@ struct PurchaseScreen: View {
     private var info: some View {
         VStack(alignment: .leading, spacing: 8) {
             ScaledCameraIllustration(camera: camera, width: Theme.Purchase.illustrationWidth)
-            Text(verbatim: camera.theme.name).font(Theme.Purchase.name).lineLimit(1).minimumScaleFactor(0.7)
+            Text(verbatim: camera.theme.name).font(camera.nameFont(size: Theme.Purchase.nameSize)).lineLimit(1).minimumScaleFactor(0.7)
             Text(camera.profile.detail).font(Theme.Purchase.body).foregroundStyle(Theme.Purchase.message)
             VStack(alignment: .leading, spacing: 1) {
                 Text("24枚撮り ・ 買ったら何度でも使えます")
