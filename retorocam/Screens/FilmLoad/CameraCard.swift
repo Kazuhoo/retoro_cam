@@ -10,7 +10,7 @@ struct CameraCard: View {
             badge.frame(height: 18)
             illustration
             Text(verbatim: camera.theme.name)
-                .font(Theme.FilmLoad.name)
+                .font(camera.nameFont(size: Theme.FilmLoad.nameSize))
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
             Text(camera.profile.summary)

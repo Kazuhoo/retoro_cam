@@ -68,6 +68,8 @@ final class PrintsModel {
     func open() {
         guard roll.state != .opened else { return }
         flap = 1
+        Haptics.envelopeOpened()
+        SoundPlayer.play(.envelopeFlap)
         services.rolls.markOpened(roll, now: services.clock.now)
         saveToLibraryIfNeeded()
         Task {

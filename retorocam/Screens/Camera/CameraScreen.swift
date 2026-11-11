@@ -97,7 +97,7 @@ struct CameraScreen: View {
 
     private func header(theme: CameraTheme, layout: ScreenLayout) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: 6) {
-            Text(verbatim: theme.name).font(Theme.Text.name)
+            Text(verbatim: theme.name).font(model.cameraID.nameFont(size: 19))
             Text(verbatim: "・ 24EXP").font(Theme.Text.exposure)
             #if DEBUG
             if !DebugSettings.shared.hidesDebugButtons {

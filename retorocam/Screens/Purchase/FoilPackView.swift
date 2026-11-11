@@ -3,6 +3,7 @@ import SwiftUI
 /// アルミの袋の中身の違い
 struct PackStyle {
     let name: Text
+    let nameFont: Font
     let subtitle: Text
     let body: Color
     let band: Color
@@ -15,6 +16,7 @@ struct PackStyle {
         switch item {
         case .camera(let camera):
             name = Text(verbatim: camera.theme.name)
+            nameFont = camera.nameFont(size: Theme.Pack.nameSize)
             subtitle = Text("使い捨てカメラ ・ 24EXP")
             body = camera.illustrationBody
             band = camera.illustrationBand
@@ -22,6 +24,7 @@ struct PackStyle {
             text = camera.profile.packText
         case .bundle:
             name = Text("4台セット")
+            nameFont = Theme.Pack.bundleName
             subtitle = Text("使い捨てカメラ ・ 4台")
             body = Theme.Pack.silver
             band = Theme.Pack.silverBand
@@ -83,7 +86,7 @@ struct FoilPackView: View {
             }
             .opacity(0.8)
             style.name
-                .font(Theme.Pack.name)
+                .font(style.nameFont)
                 .foregroundStyle(style.text)
                 .shadow(color: .black.opacity(0.25), radius: 0, y: 1)
                 .offset(x: 26, y: 20)

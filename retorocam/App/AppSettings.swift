@@ -17,8 +17,13 @@ final class AppSettings {
 
     var dateStamp: Bool { didSet { defaults.set(dateStamp, forKey: Key.dateStamp) } }
     var lightLeak: Bool { didSet { defaults.set(lightLeak, forKey: Key.lightLeak) } }
-    /// 巻き上げ音・効果音（シャッター音は含まない）。音は M7 で入れる
-    var sound: Bool { didSet { defaults.set(sound, forKey: Key.sound) } }
+    /// 巻き上げ音・効果音（シャッター音は含まない）
+    var sound: Bool {
+        didSet {
+            defaults.set(sound, forKey: Key.sound)
+            SoundPlayer.isEnabled = sound
+        }
+    }
     var haptics: Bool {
         didSet {
             defaults.set(haptics, forKey: Key.haptics)
@@ -39,6 +44,7 @@ final class AppSettings {
         hasSeenOnboarding = defaults.bool(forKey: Key.hasSeenOnboarding)
         launchCount = defaults.integer(forKey: Key.launchCount)
         Haptics.isEnabled = haptics
+        SoundPlayer.isEnabled = sound
     }
 
     func recordLaunch() {

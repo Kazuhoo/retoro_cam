@@ -24,7 +24,7 @@ enum Theme {
         static let gap: CGFloat = 10
         static let columnGap: CGFloat = 20
         static let leftWidth: CGFloat = 380
-        static let count = Font.system(size: 26, design: .monospaced)
+        static let count = Theme.dotFont(size: 32)
         static let rowTitle = Font.system(size: 14, weight: .bold)
         static let rowDetail = Font.system(size: 12)
         static let button = Font.system(size: 13, weight: .bold)
@@ -83,15 +83,14 @@ enum Theme {
     }
 
     enum Text {
-        static let name = Font.system(size: 16, weight: .bold)   // M7 でカメラごとの書体に
-        static let exposure = Font.system(size: 15, design: .monospaced)   // M7 で VT323 に
+        static let exposure = Theme.dotFont(size: 19)
         static let hint = Font.system(size: 11)
         static let hintBold = Font.system(size: 11, weight: .bold)
         static let small = Font.system(size: 10)
         static let smallBold = Font.system(size: 10, weight: .bold)
         static let status = Font.system(size: 13)
         static let develop = Font.system(size: 15, weight: .bold)
-        static let counter = Font.system(size: 20, design: .monospaced)   // M7 で VT323 に
+        static let counter = Theme.dotFont(size: 26)
     }
 
     enum Status {

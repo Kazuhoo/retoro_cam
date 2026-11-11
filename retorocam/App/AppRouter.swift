@@ -17,6 +17,7 @@ final class AppRouter {
         case filmLoad(selected: CameraID)
         case purchase(PurchaseRequest)
         case settings
+        case licenses
         /// isReplay は設定の「使い方を見る」から開いたとき
         case onboarding(isReplay: Bool)
     }

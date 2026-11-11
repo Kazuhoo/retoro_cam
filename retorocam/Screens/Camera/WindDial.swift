@@ -5,6 +5,8 @@ struct WindDial: View {
     let spin: CGFloat
     let isBouncing: Bool
     let onWind: (CGFloat) -> Void
+    /// VoiceOver の上スワイプで少し巻く
+    let onStep: () -> Void
 
     @State private var lastX: CGFloat?
 
@@ -34,6 +36,12 @@ struct WindDial: View {
                 }
                 .onEnded { _ in lastX = nil }
         )
+        .accessibilityElement()
+        .accessibilityLabel(Text("巻き上げダイヤル"))
+        .accessibilityHint(Text("上にスワイプすると巻き上げます"))
+        .accessibilityAdjustableAction { direction in
+            if direction == .increment { onStep() }
+        }
     }
 
     private var shape: RoundedRectangle {

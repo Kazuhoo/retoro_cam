@@ -46,7 +46,10 @@ struct RootView: View {
         case .settings:
             SettingsScreen(settings: services.settings, purchases: services.purchases,
                            onBack: { router.screen = .shooting },
-                           onShowGuide: { router.screen = .onboarding(isReplay: true) })
+                           onShowGuide: { router.screen = .onboarding(isReplay: true) },
+                           onShowLicenses: { router.screen = .licenses })
+        case .licenses:
+            LicensesScreen(onBack: { router.screen = .settings })
         case .onboarding(let isReplay):
             OnboardingScreen(isReplay: isReplay) {
                 if isReplay {

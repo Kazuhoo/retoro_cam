@@ -17,6 +17,16 @@
 		FCB56C0230A0B5D000E2CF92 /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = App.xcconfig; path = Config/App.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FCB56C0B30A0B5D000E2CF92 /* Exceptions for "Fonts" folder in "retorocam" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				README.md,
+			);
+			target = FCB56B9830A0B5C700E2CF92 /* retorocam */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FCB56B9B30A0B5C700E2CF92 /* retorocam */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -27,6 +37,21 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			name = LUTs;
 			path = Resources/LUTs;
+			sourceTree = "<group>";
+		};
+		FCB56C0930A0B5D000E2CF92 /* Fonts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FCB56C0B30A0B5D000E2CF92 /* Exceptions for "Fonts" folder in "retorocam" target */,
+			);
+			name = Fonts;
+			path = Resources/Fonts;
+			sourceTree = "<group>";
+		};
+		FCB56C0A30A0B5D000E2CF92 /* Sounds */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			name = Sounds;
+			path = Resources/Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -51,6 +76,8 @@
 				FCB56C0130A0B5D000E2CF92 /* RetoroCam.storekit */,
 				FCB56B9B30A0B5C700E2CF92 /* retorocam */,
 				FCB56BB030A0B5C700E2CF92 /* LUTs */,
+				FCB56C0930A0B5D000E2CF92 /* Fonts */,
+				FCB56C0A30A0B5D000E2CF92 /* Sounds */,
 				FCB56B9A30A0B5C700E2CF92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +108,8 @@
 			fileSystemSynchronizedGroups = (
 				FCB56B9B30A0B5C700E2CF92 /* retorocam */,
 				FCB56BB030A0B5C700E2CF92 /* LUTs */,
+				FCB56C0930A0B5D000E2CF92 /* Fonts */,
+				FCB56C0A30A0B5D000E2CF92 /* Sounds */,
 			);
 			name = retorocam;
 			packageProductDependencies = (
