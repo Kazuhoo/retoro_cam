@@ -11,8 +11,10 @@
 
 ## 技術
 
-- Swift / SwiftUI、iOS 17.2 以上、iPhone のみ、**横向きのみ**
+- Swift / SwiftUI、iOS 17.2 以上、iPhone のみ、**撮影画面だけ横向き、ほかの画面は縦向き**
 - AVFoundation（`AVCaptureEventInteraction` で音量ボタンのシャッター）
+- Core Motion（「横にして構える」画面で本体の向きを判定）
+- SceneKit（立体のカメラ）
 - Core Image（LUT は `CIColorCubeWithColorSpace`、sRGB）
 - SwiftData、StoreKit 2、UserNotifications、Photos（追加のみ）
 - Google Mobile Ads ＋ UMP（Swift Package Manager）

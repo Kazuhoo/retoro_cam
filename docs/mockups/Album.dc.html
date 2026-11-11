@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>アルバム</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;family=Zen+Kurenaido&amp;family=VT323&amp;family=Shrikhand&amp;family=Special+Elite&amp;family=Pacifico&amp;family=DM+Serif+Display:ital@0;1&amp;family=Monoton&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#F2EDE4}a:hover{color:#F2EDE4}
+@keyframes popin{0%{transform:scale(0.6) translateY(30px);opacity:0}70%{transform:scale(1.06) translateY(-4px);opacity:1}100%{transform:scale(1) translateY(0);opacity:1}}
+@keyframes fadeup{0%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes hint{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+@keyframes hintup{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes drop{0%{transform:translateY(-60px);opacity:0}60%{transform:translateY(6px);opacity:1}100%{transform:translateY(0);opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.25}}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(10px)}}
+@keyframes press{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes turn{0%,18%{transform:rotate(0deg)}52%,82%{transform:rotate(-90deg)}100%{transform:rotate(0deg)}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 20px 34px; background: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; color: #F2EDE4; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden;">
+<div style="display: flex; align-items: center; justify-content: space-between; min-height: 44px">
+<a href="Home.dc.html" style="display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 22px; background: #2B2925; color: #F2EDE4; font-size: 13px; text-decoration: none;">ホーム</a>
+<div style="font-size: 16px; font-weight: 700">アルバム</div>
+<div style="min-width: 70px; text-align: right; font-family: 'VT323', monospace; font-size: 20px; color: #C9C3B8">{{pageLabel}}</div>
+</div>
+
+<div onPointerDown="{{dragStart}}" onPointerUp="{{dragEnd}}" onPointerCancel="{{dragCancel}}" style="flex: 1; min-height: 0; box-sizing: border-box; padding: 8px 8px 8px 30px; border-radius: 8px; background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.05) 45%, rgba(0,0,0,0.06) 100%), #9FC4E8; box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.35); display: flex; touch-action: pan-y; position: relative">
+<div aria-hidden="true" style="position: absolute; left: 6px; top: 18px; bottom: 18px; width: 16px; background: repeating-linear-gradient(180deg, #E7EEF6 0px, #E7EEF6 8px, rgba(0,0,0,0) 8px, rgba(0,0,0,0) 30px); border-radius: 8px"></div>
+<div style="flex: 1; position: relative; padding: 12px 12px; box-sizing: border-box; background: linear-gradient(180deg, #F4F4F2 0%, #E9E9E6 100%); display: flex; flex-direction: column; gap: 10px">
+<div style="min-height: 18px; font-family: 'Zen Kurenaido', sans-serif; font-size: 14px; color: #6A6A72">{{pL.head}}</div>
+<sc-for list="{{pL.photos}}" as="ph" hint-placeholder-count="3">
+<div style="display: flex; gap: 8px; align-items: stretch">
+<button onClick="{{ph.open}}" aria-label="写真 {{ph.caption}} を大きく見る" style="width: 204px; height: 138px; flex-shrink: 0; position: relative; border: none; padding: 4px; box-sizing: border-box; cursor: pointer; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(150,150,160,0.55), 0 1px 0 rgba(0,0,0,0.06)">
+<div style="width: 100%; height: 100%; position: relative; background: radial-gradient(ellipse at center, {{ph.c}} 0%, {{ph.d}} 100%); transform: translate({{ph.dx}}, {{ph.dy}})">
+<div style="position: absolute; right: 5px; bottom: 2px; font-family: 'VT323', monospace; font-size: 12px; color: #FF9A2E">{{ph.stamp}}</div>
+</div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,0) 18%, rgba(255,255,255,0.38) 26%, rgba(255,255,255,0) 34%), linear-gradient(115deg, rgba(255,255,255,0) 60%, rgba(255,255,255,0.18) 66%, rgba(255,255,255,0) 72%), repeating-linear-gradient(97deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 23px, rgba(255,255,255,0.10) 23px, rgba(255,255,255,0.10) 24px)"></div>
+</button>
+<div style="flex: 1; position: relative; box-sizing: border-box; padding: 6px 8px; background: repeating-linear-gradient(180deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 21px, rgba(120,150,190,0.45) 21px, rgba(120,150,190,0.45) 22px), #FFFFFF; box-shadow: inset 0 0 0 1px rgba(150,150,160,0.45); font-family: 'Zen Kurenaido', sans-serif; font-size: 14px; line-height: 22px; color: #2F3A6A">
+<div>{{ph.caption}}</div>
+<div style="font-size: 11px; color: #5A6390">{{ph.cam}}</div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between">
+<button aria-label="前のページ" onClick="{{prev}}" disabled="{{atStart}}" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: #2B2925; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: {{prevOp}}"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 L5 8 L10 13" fill="none" stroke="#F2EDE4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+<div style="font-size: 12px; color: #A39E93">左右にスワイプしてページをめくる</div>
+<button aria-label="次のページ" onClick="{{next}}" disabled="{{atEnd}}" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: #2B2925; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: {{nextOp}}"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3 L11 8 L6 13" fill="none" stroke="#F2EDE4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+<div style="margin: 0 -20px; height: 50px; flex-shrink: 0; box-sizing: border-box; background: #24221F; border-top: 1px dashed #4A473F; border-bottom: 1px dashed #4A473F; display: flex; align-items: center; justify-content: center; gap: 8px; color: #A39E93; font-size: 12px"><span style="padding: 1px 6px; border: 1px solid #8A847A; border-radius: 3px; font-size: 10px">AD</span><span>AdMob アダプティブバナー</span></div>
+<sc-if value="{{hasSel}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; z-index: 10; background: rgba(12,11,10,0.88); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px">
+<div style="width: 350px; height: 234px; box-sizing: border-box; padding: 12px; background: #FBF8F1; box-shadow: 0 16px 36px rgba(0,0,0,0.6)">
+<div style="width: 100%; height: 100%; position: relative; background: radial-gradient(ellipse at center, {{sel.c}} 0%, {{sel.d}} 100%)">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #EDE6D8">写真</div>
+<div style="position: absolute; right: 12px; bottom: 6px; font-family: 'VT323', monospace; font-size: 20px; color: #FF9A2E; text-shadow: 0 0 5px rgba(255,140,30,0.5)">{{sel.stamp}}</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 300px; text-align: center">
+<div style="font-family: {{sel.font}}; font-size: 20px; line-height: 1.2">{{sel.cam}}</div>
+<div style="font-family: 'Zen Kurenaido', sans-serif; font-size: 15px; color: #C9C3B8">{{sel.caption}}</div>
+<button onClick="{{closeSel}}" style="align-self: center; min-height: 44px; padding: 0 22px; border-radius: 22px; border: none; background: #F2EDE4; color: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer">閉じる</button>
+<button onClick="{{removeSel}}" style="align-self: center; min-height: 36px; padding: 0; border: none; background: transparent; color: #E86A5E; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12px; text-decoration: underline; cursor: pointer">アルバムから抜く</button>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const self = this;
+    const CAMS = {
+      pool: { name: 'SPLASH 200', font: 'Pacifico, cursive', tones: [['#C4E0E8', '#5A8496'], ['#B4D8E2', '#4E7A8C'], ['#D2E6E4', '#6A8E96']] },
+      sunshine: { name: 'SUNDAY 400', font: 'Shrikhand, cursive', tones: [['#C49A5C', '#3E2E1E'], ['#A38E62', '#33301F'], ['#C0855A', '#3C2A1E']] },
+      charcoal: { name: 'NOIR 1600', font: 'Special Elite, monospace', tones: [['#A0A0A0', '#141414'], ['#7E7E7E', '#101010'], ['#B8B8B8', '#1A1A1A']] }
+    };
+    const ROLLS = [
+      { cam: 'pool', from: [10, 12], days: [12, 12, 13, 14, 15, 16, 18, 19] },
+      { cam: 'sunshine', from: [9, 1], days: [1, 1, 2, 5, 5, 8, 12, 14, 20] },
+      { cam: 'charcoal', from: [8, 3], days: [3, 4, 4, 9, 11] }
+    ];
+    const removed = st.removed || {};
+    const pages = [];
+    ROLLS.forEach(function (r, ri) {
+      const cam = CAMS[r.cam];
+      const m = r.from[0];
+      const photos = [];
+      r.days.forEach(function (d, i) {
+        const key = ri + '-' + i;
+        if (removed[key]) return;
+        const t = cam.tones[i % cam.tones.length];
+        const dx = ((i * 7 + ri * 3) % 5 - 2) + 'px'; const dy = ((i * 5 + ri) % 3 - 1) + 'px';
+        photos.push({ key: key, c: t[0], d: t[1], dx: dx, dy: dy, stamp: "'26 " + (m < 10 ? '0' : '') + m + ' ' + (d < 10 ? '0' : '') + d, caption: m + '/' + d, cam: cam.name, font: cam.font });
+      });
+      const last = r.days[r.days.length - 1];
+      for (let k = 0; k < Math.max(photos.length, 1); k += 3) {
+        pages.push({ head: k === 0 ? (cam.name + '　' + m + '/' + r.days[0] + '〜' + m + '/' + last) : '', photos: photos.slice(k, k + 3) });
+      }
+    });
+    const spreads = pages.length;
+    const sp = Math.max(0, Math.min(spreads - 1, st.spread || 0));
+    const wire = function (pg) {
+      return Object.assign({}, pg, { photos: pg.photos.map(function (ph) {
+        return Object.assign({}, ph, { open: function () { if (self._justDragged) { self._justDragged = false; return; } self.setState({ sel: ph }); } });
+      }) });
+    };
+    const go = function (d) { self.setState({ spread: Math.max(0, Math.min(spreads - 1, sp + d)) }); };
+    const sel = st.sel || null;
+    return {
+      pL: wire(pages[sp]),
+      pageLabel: (sp + 1) + ' / ' + pages.length,
+      atStart: sp === 0, atEnd: sp === spreads - 1,
+      prevOp: sp === 0 ? '0.35' : '1', nextOp: sp === spreads - 1 ? '0.35' : '1',
+      prev: function () { go(-1); }, next: function () { go(1); },
+      dragStart: function (e) { self._ax = e.clientX; },
+      dragEnd: function (e) { if (self._ax == null) return; const dx = e.clientX - self._ax; self._ax = null; self._justDragged = Math.abs(dx) > 10; if (dx < -60) go(1); else if (dx > 60) go(-1); },
+      dragCancel: function () { self._ax = null; },
+      hasSel: !!sel,
+      sel: sel || { c: '#888', d: '#222', stamp: '', caption: '', cam: '', font: 'inherit' },
+      closeSel: function () { self.setState({ sel: null }); },
+      removeSel: function () {
+        const s0 = self.state || {};
+        const r = Object.assign({}, s0.removed || {});
+        if (s0.sel) r[s0.sel.key] = true;
+        self.setState({ removed: r, sel: null });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

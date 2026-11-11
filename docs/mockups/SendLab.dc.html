@@ -8,53 +8,84 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;family=VT323&amp;family=Shrikhand&amp;family=Special+Elite&amp;family=Pacifico&amp;family=DM+Serif+Display:ital@0;1&amp;family=Monoton&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;family=Zen+Kurenaido&amp;family=VT323&amp;family=Shrikhand&amp;family=Special+Elite&amp;family=Pacifico&amp;family=DM+Serif+Display:ital@0;1&amp;family=Monoton&amp;display=swap">
 <style>
 body{margin:0}
-a{color:#1C1B19}a:hover{color:#000000}
+a{color:#1C1B19}a:hover{color:#1C1B19}
+@keyframes popin{0%{transform:scale(0.6) translateY(30px);opacity:0}70%{transform:scale(1.06) translateY(-4px);opacity:1}100%{transform:scale(1) translateY(0);opacity:1}}
 @keyframes fadeup{0%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes hint{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+@keyframes hintup{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes drop{0%{transform:translateY(-60px);opacity:0}60%{transform:translateY(6px);opacity:1}100%{transform:translateY(0);opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.25}}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(10px)}}
+@keyframes press{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes turn{0%,18%{transform:rotate(0deg)}52%,82%{transform:rotate(-90deg)}100%{transform:rotate(0deg)}}
 </style>
 </helmet>
-<div style="width: 844px; height: 390px; box-sizing: border-box; padding: 20px 40px; background: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; color: #F2EDE4; display: flex; flex-direction: column; position: relative; overflow: hidden">
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 20px 34px; background: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; color: #F2EDE4; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden;">
+
 
 <sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
-<div style="flex: 1; display: flex; align-items: center; gap: 56px">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px">
 <div style="width: 300px; height: 200px; position: relative; flex-shrink: 0">
-<div style="position: absolute; left: 40px; top: 40px; transition: transform 0.9s cubic-bezier(.5,0,.75,0), opacity 0.9s ease-in; transform: translateX({{camX}}) rotate({{camRot}}); opacity: {{camOp}}">
-<div aria-hidden="true" style="width: 220px; height: 122px; position: relative; flex-shrink: 0;">
-<div style="position: absolute; left: 0; top: 0; width: 220px; height: 122px; transform: scale(1.0000); transform-origin: top left">
-<div style="position: absolute; left: 16px; right: 16px; bottom: -12px; height: 16px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 70%)"></div>
-<div style="position: absolute; inset: 0; border-radius: 14px; background: linear-gradient(180deg, #3C3C3C 0%, #1E1E1E 16%, #131313 78%, #0A0A0A 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -2px 3px rgba(0,0,0,0.6), 0 6px 14px rgba(0,0,0,0.45)"></div>
-<div style="position: absolute; left: 6px; top: 12px; bottom: 12px; width: 26px; border-radius: 8px; background: repeating-linear-gradient(90deg, #242424 0px, #242424 2px, #0B0B0B 2px, #0B0B0B 4px); box-shadow: inset 0 0 6px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.08)"></div>
-<div style="position: absolute; left: 38px; right: 54px; top: 6px; bottom: 6px; border-radius: 4px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 26%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.2) 100%), {{c.body}}; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.25)">
+<div style="position: absolute; left: 15px; top: 14px; transition: transform 0.9s cubic-bezier(.5,0,.75,0), opacity 0.9s ease-in; transform: translateX({{camX}}) rotate({{camRot}}); opacity: {{camOp}}">
+<div onPointerDown="{{ct.start}}" onPointerMove="{{ct.move}}" onPointerUp="{{ct.end}}" onPointerCancel="{{ct.end}}" role="img" aria-label="{{c.name}} のカメラ（指でなぞると回せます）" style="width: 270px; height: 171px; position: relative; flex-shrink: 0; touch-action: none; cursor: grab;">
+<div style="position: absolute; left: 0; top: 0; width: 300px; height: 190px; transform: scale(0.9000); transform-origin: top left">
+<div aria-hidden="true" style="position: absolute; left: 60.0px; top: 166.0px; width: 180px; height: 20px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 70%)"></div>
+<div aria-hidden="true" style="position: absolute; left: 40.0px; top: 28.0px; width: 220px; height: 122px; perspective: 800px">
+<div style="position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX({{ct.rx}}) rotateY({{ct.ry}}); transition: {{ct.tr}}">
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 0; top: 0; width: 220px; height: 122px; border-radius: 10px; transform: rotateY(180deg) translateZ(30.0px); background: linear-gradient(180deg, #3C3C3C 0%, #1E1E1E 16%, #131313 78%, #0A0A0A 100%)">
+<div style="position: absolute; left: 54px; right: 38px; top: 6px; bottom: 6px; border-radius: 4px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(0,0,0,0.18)), {{c.body}}; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3)">
+<div style="position: absolute; left: 10px; top: 34px; font-family: {{c.font}}; font-size: 15px; line-height: 1.2; color: rgba(255,255,255,0.92); text-shadow: 0 1px 0 rgba(0,0,0,0.35); white-space: nowrap">{{c.name}}</div>
+<div style="position: absolute; left: 10px; top: 60px; font-family: 'VT323', monospace; font-size: 14px; color: rgba(255,255,255,0.85)">24 EXP</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 18px; display: flex; flex-direction: column"><sc-for list="{{c.stripes}}" as="s" hint-placeholder-count="2"><div style="height: 4px; background: {{s.c}}"></div></sc-for><div style="flex: 1; background: {{c.band}}"></div></div>
+</div>
+<div style="position: absolute; left: 12px; top: 12px; width: 30px; height: 20px; border-radius: 5px; background: #050505; box-shadow: 0 0 0 3px #1A1A1A, inset 0 0 6px rgba(70,90,110,0.5)"></div>
+<div style="position: absolute; left: 14px; top: 44px; width: 22px; height: 14px; border-radius: 3px; background: #050505; box-shadow: 0 0 0 2px #2A2A2A; font-family: 'VT323', monospace; font-size: 12px; line-height: 14px; text-align: center; color: #F2EDE4">00</div>
+</div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 0; top: 31.0px; width: 220px; height: 60px; border-radius: 6px; transform: rotateX(-90deg) translateZ(61.0px); background: #0A0A0A"></div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 80.0px; top: 0; width: 60px; height: 122px; border-radius: 6px; transform: rotateY(-90deg) translateZ(110.0px); background: repeating-linear-gradient(0deg, #1A1A1A 0px, #1A1A1A 2px, #0B0B0B 2px, #0B0B0B 4px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1)"></div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 80.0px; top: 0; width: 60px; height: 122px; border-radius: 6px; transform: rotateY(90deg) translateZ(110.0px); background: linear-gradient(90deg, #0E0E0E 0%, #1B1B1B 50%, #0E0E0E 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12)">
+<div style="position: absolute; left: 10px; right: 10px; top: 50px; height: 22px; border-radius: 3px; background: #090909"></div>
+</div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 0; top: 31.0px; width: 220px; height: 60px; border-radius: 6px; transform: rotateX(90deg) translateZ(61.0px); background: linear-gradient(180deg, #2E2E2E 0%, #222222 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08)">
+<div style="position: absolute; right: 30px; top: 18px; width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #5A5A5A 0%, #2A2A2A 60%, #111111 100%); box-shadow: 0 0 0 3px #161616"></div>
+<div style="position: absolute; right: 70px; top: 0; width: 38px; height: 14px; border-radius: 0 0 4px 4px; background: repeating-linear-gradient(90deg, #3A3A3A 0px, #3A3A3A 2px, #151515 2px, #151515 4px)"></div>
+</div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 0; top: 0; width: 220px; height: 122px; border-radius: 10px; transform: translateZ(30.0px); background: linear-gradient(180deg, #3C3C3C 0%, #1E1E1E 16%, #131313 78%, #0A0A0A 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -2px 3px rgba(0,0,0,0.6)">
+<div style="position: absolute; left: 6px; top: 12px; bottom: 12px; width: 26px; border-radius: 8px; background: repeating-linear-gradient(90deg, #242424 0px, #242424 2px, #0B0B0B 2px, #0B0B0B 4px); box-shadow: inset 0 0 6px rgba(0,0,0,0.85)"></div>
+<div style="position: absolute; left: 38px; right: 54px; top: 6px; bottom: 6px; border-radius: 4px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 26%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.2) 100%), {{c.body}}; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3)">
 <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 24px; display: flex; flex-direction: column"><sc-for list="{{c.stripes}}" as="s" hint-placeholder-count="2"><div style="height: 4px; background: {{s.c}}"></div></sc-for><div style="flex: 1; background: {{c.band}}"></div></div>
-<div style="position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px, rgba(0,0,0,0.035) 2px, rgba(0,0,0,0.035) 3px)"></div>
 </div>
-<div style="position: absolute; left: 70px; top: 16px; width: 66px; height: 66px; border-radius: 50%; background: radial-gradient(circle at 50% 50%, #262626 0%, #262626 52%, #060606 54%, #060606 62%, #2C2C2C 64%, #151515 100%); box-shadow: 0 4px 8px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -2px 3px rgba(0,0,0,0.7)"></div>
-<div style="position: absolute; left: 87px; top: 33px; width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle at 36% 30%, #6D8199 0%, #26313E 32%, #070A0E 70%, #000000 100%); box-shadow: inset 0 0 4px rgba(0,0,0,0.9)"></div>
-<div style="position: absolute; left: 93px; top: 38px; width: 9px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.75); filter: blur(1px); transform: rotate(-30deg)"></div>
+<div style="position: absolute; left: 70px; top: 16px; width: 66px; height: 66px; border-radius: 50%; background: radial-gradient(circle, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 72%)"></div>
 <div style="position: absolute; right: 64px; top: 12px; width: 24px; height: 17px; border-radius: 3px; background: linear-gradient(135deg, #3A4856 0%, #10161C 55%, #05080B 100%); box-shadow: 0 0 0 2px #0A0A0A, inset 0 1px 0 rgba(255,255,255,0.25)"></div>
-<div style="position: absolute; right: 10px; top: 12px; width: 36px; height: 26px; border-radius: 3px; background: repeating-linear-gradient(0deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 2px, rgba(120,120,110,0.35) 2px, rgba(120,120,110,0.35) 3px), linear-gradient(180deg, #F6F6F2 0%, #CFCFC6 100%); box-shadow: 0 0 0 2px #1E1E1E, inset 0 0 4px rgba(0,0,0,0.25)"></div>
-<div style="position: absolute; right: 12px; top: 46px; width: 30px; height: 18px; border-radius: 3px; background: #050505; box-shadow: inset 0 1px 3px rgba(0,0,0,0.9), 0 0 0 1px #2a2a2a; font-family: 'VT323', monospace; font-size: 16px; line-height: 18px; text-align: center; color: #F2EDE4">00</div>
+<div style="position: absolute; right: 10px; top: 12px; width: 36px; height: 26px; border-radius: 3px; background: repeating-linear-gradient(0deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 2px, rgba(120,120,110,0.35) 2px, rgba(120,120,110,0.35) 3px), linear-gradient(180deg, #F6F6F2 0%, #CFCFC6 100%); box-shadow: 0 0 0 2px #1E1E1E"></div>
+</div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 72px; top: 18px; width: 62px; height: 62px; border-radius: 50%; transform: translateZ(35.0px); background: radial-gradient(circle at 50% 50%, #262626 0%, #262626 52%, #060606 54%, #060606 62%, #2C2C2C 64%, #151515 100%); box-shadow: inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -2px 3px rgba(0,0,0,0.7)"></div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 72px; top: 18px; width: 62px; height: 62px; border-radius: 50%; transform: translateZ(32.5px); background: #0C0C0C"></div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 87px; top: 33px; width: 32px; height: 32px; border-radius: 50%; transform: translateZ(39.0px); background: radial-gradient(circle at 36% 30%, #6D8199 0%, #26313E 32%, #070A0E 70%, #000000 100%); box-shadow: inset 0 0 4px rgba(0,0,0,0.9)"></div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 93px; top: 38px; width: 9px; height: 6px; border-radius: 50%; transform: translateZ(40.0px) rotate(-30deg); background: rgba(255,255,255,0.75); filter: blur(1px)"></div>
 </div>
 </div>
 </div>
 </div>
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 340px">
+</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 340px">
 <div style="font-family: 'VT323', monospace; font-size: 22px; line-height: 1.2; color: #C9C3B8"><span style="font-family: {{c.font}}; font-size: 20px">{{c.name}}</span> ・ 24EXP</div>
 <h1 style="margin: 0; font-size: 22px; font-weight: 700; line-height: 1.4">24枚、撮り切りました。<br>現像に出しますか？</h1>
 <div style="font-size: 13px; color: #C9C3B8; line-height: 1.7">写真は{{arrive}}ごろ、封筒に入って届きます。<br>同じカメラは、新しく開ければまた使えます。</div>
-<div style="display: flex; gap: 12px; margin-top: 6px">
-<a href="Main.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 24px; background: #2B2925; color: #F2EDE4; font-size: 14px; text-decoration: none">あとで</a>
-<button onClick="{{send}}" disabled="{{sending}}" style="min-height: 48px; padding: 0 28px; border-radius: 24px; border: none; background: #F08A24; color: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer">現像に出す</button>
+<div style="display: flex; flex-direction: column-reverse; gap: 10px; margin-top: 10px; width: 300px">
+<a href="Main.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 24px; justify-content: center; background: #2B2925; color: #F2EDE4; font-size: 14px; text-decoration: none">あとで</a>
+<button onClick="{{send}}" disabled="{{sending}}" style="min-height: 52px; padding: 0 28px; border-radius: 26px; border: none; background: #F08A24; color: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer">現像に出す</button>
 </div>
 </div>
 </div>
 </sc-if>
 
 <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
-<div style="flex: 1; display: flex; align-items: center; gap: 56px">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px">
 <div aria-hidden="true" style="width: 300px; height: 200px; flex-shrink: 0; display: flex; align-items: center; justify-content: center">
 <div style="width: 240px; height: 150px; border-radius: 10px; border: 2px dashed #5A564D; position: relative; animation: drop 0.6s ease-out both">
 <div style="position: absolute; left: 0; right: 0; top: 0; height: 40px; border-bottom: 2px dashed #5A564D"></div>
@@ -62,21 +93,49 @@ a{color:#1C1B19}a:hover{color:#000000}
 <div style="position: absolute; left: 0; right: 0; top: 88px; text-align: center; font-size: 12px; color: #A39E93">お届け予定</div>
 </div>
 </div>
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 340px; animation: fadeup 0.5s 0.3s ease-out both">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 340px; animation: fadeup 0.5s 0.3s ease-out both">
 <h1 style="margin: 0; font-size: 22px; font-weight: 700; line-height: 1.4">現像に出しました</h1>
 <div style="font-size: 13px; color: #C9C3B8; line-height: 1.7">3日後、{{arrive}}ごろに届きます。<br>届いたらお知らせします。<br>待っている間も、新しいカメラで撮れます。</div>
-<a href="FilmLoad.dc.html" style="align-self: flex-start; display: flex; align-items: center; min-height: 48px; padding: 0 28px; border-radius: 24px; background: #F08A24; font-size: 15px; font-weight: 700; text-decoration: none; margin-top: 6px">新しいカメラを開ける</a>
+<a href="FilmLoad.dc.html" style="align-self: stretch; display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 24px; background: #F08A24; font-size: 15px; font-weight: 700; text-decoration: none; margin-top: 6px">新しいカメラを開ける</a>
 </div>
 </div>
 </sc-if>
 
+
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"camera":{"editor":"enum","options":["sunshine","charcoal","pool","green","party"],"default":"sunshine"},"$preview":{"width":844,"height":390}}'>
+<script type="text/x-dc" data-dc-script data-props='{"camera":{"editor":"enum","options":["sunshine","charcoal","pool","green","party"],"default":"sunshine"},"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
   renderVals() {
     const st = this.state || {};
     const self = this;
+    const REST_X = 12, REST_Y = -26;
+    const tiltApi = function (key) {
+      const get = function () { const t = ((self.state || {}).tilts || {})[key]; return t || { rx: REST_X, ry: REST_Y, on: false }; };
+      const put = function (t) { const all = Object.assign({}, (self.state || {}).tilts || {}); all[key] = t; self.setState({ tilts: all }); };
+      const cur = get();
+      return {
+        rx: cur.rx.toFixed(1) + 'deg', ry: cur.ry.toFixed(1) + 'deg',
+        tr: cur.on ? 'none' : 'transform 0.8s cubic-bezier(.2,1.5,.4,1)',
+        start: function (e) {
+          const c = get();
+          self._tk = key; self._tx = e.clientX; self._ty = e.clientY; self._bx = c.ry; self._by = c.rx;
+          put({ rx: c.rx, ry: c.ry, on: true });
+          if (e.currentTarget && e.currentTarget.setPointerCapture) e.currentTarget.setPointerCapture(e.pointerId);
+          if (e.stopPropagation) e.stopPropagation();
+        },
+        move: function (e) {
+          if (self._tk !== key || self._tx == null) return;
+          put({ ry: self._bx + (e.clientX - self._tx) * 0.9, rx: Math.max(-60, Math.min(60, self._by - (e.clientY - self._ty) * 0.6)), on: true });
+        },
+        end: function () {
+          if (self._tk !== key) return;
+          self._tk = null; self._tx = null;
+          const c = get();
+          put({ rx: REST_X, ry: REST_Y + 360 * Math.round((c.ry - REST_Y) / 360), on: false });
+        }
+      };
+    };
     const CAMS = {
       sunshine: { name: 'SUNDAY 400', font: 'Shrikhand, cursive', body: '#F2B42A', band: '#24315E', stripes: ['#F7D24A', '#EE8A2B', '#D9452B'] },
       charcoal: { name: 'NOIR 1600', font: 'Special Elite, monospace', body: '#2A2825', band: '#1A1917', stripes: ['#F08A24'] },
@@ -91,6 +150,7 @@ class Component extends DCLogic {
     const stage = st.stage || 'confirm';
     return {
       c: c,
+      ct: tiltApi('send'),
       arrive: (d.getMonth() + 1) + '月' + d.getDate() + '日（' + wd + '）',
       arriveShort: (d.getMonth() + 1) + '/' + d.getDate(),
       notDone: stage !== 'done', isDone: stage === 'done',

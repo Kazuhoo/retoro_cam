@@ -8,45 +8,55 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;family=VT323&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;family=Zen+Kurenaido&amp;family=VT323&amp;family=Shrikhand&amp;family=Special+Elite&amp;family=Pacifico&amp;family=DM+Serif+Display:ital@0;1&amp;family=Monoton&amp;display=swap">
 <style>
 body{margin:0}
-a{color:#F2EDE4}a:hover{color:#FFFFFF}
+a{color:#F2EDE4}a:hover{color:#F2EDE4}
+@keyframes popin{0%{transform:scale(0.6) translateY(30px);opacity:0}70%{transform:scale(1.06) translateY(-4px);opacity:1}100%{transform:scale(1) translateY(0);opacity:1}}
+@keyframes fadeup{0%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes hint{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+@keyframes hintup{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes drop{0%{transform:translateY(-60px);opacity:0}60%{transform:translateY(6px);opacity:1}100%{transform:translateY(0);opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.25}}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(10px)}}
+@keyframes press{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes turn{0%,18%{transform:rotate(0deg)}52%,82%{transform:rotate(-90deg)}100%{transform:rotate(0deg)}}
 </style>
 </helmet>
-<div style="width: 844px; height: 390px; box-sizing: border-box; padding: 20px 40px; background: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; color: #F2EDE4; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 20px 34px; background: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; color: #F2EDE4; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden;">
+
 
 <div style="display: flex; align-items: center; justify-content: space-between">
 <h1 style="margin: 0; font-size: 22px; font-weight: 700">設定</h1>
-<a href="Main.dc.html" style="display: flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 22px; background: #2B2925; font-size: 13px; text-decoration: none">カメラに戻る</a>
+<a href="Home.dc.html" style="display: flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 22px; background: #2B2925; font-size: 13px; text-decoration: none">戻る</a>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px">
+<div style="display: flex; flex-direction: column; gap: 8px">
 
 
 <sc-for list="{{toggles}}" as="t" hint-placeholder-count="4">
-<button onClick="{{t.flip}}" aria-pressed="{{t.pressed}}" style="min-height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; border: none; background: #23211E; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; cursor: pointer">
+<button onClick="{{t.flip}}" aria-pressed="{{t.pressed}}" style="min-height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; border: none; background: #23211E; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; cursor: pointer">
 <span>{{t.label}}</span>
 <div aria-hidden="true" style="width: 46px; height: 28px; border-radius: 14px; background: {{t.track}}; padding: 3px; box-sizing: border-box; display: flex; justify-content: {{t.side}}"><div style="width: 22px; height: 22px; border-radius: 11px; background: #F2EDE4"></div></div>
 </button>
 </sc-for>
 
-<a href="Onboarding.dc.html" style="min-height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; background: #23211E; text-decoration: none; font-size: 14px">
+<a href="Onboarding.dc.html" style="min-height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; background: #23211E; text-decoration: none; font-size: 14px">
 <span>使い方を見る</span>
 <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3 L11 8 L6 13" fill="none" stroke="#A39E93" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 </a>
 
-<button style="min-height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; border: none; background: #23211E; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; cursor: pointer">
+<button style="min-height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; border: none; background: #23211E; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; cursor: pointer">
 <span>購入を復元</span>
 <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7 M4 4v4h4" fill="none" stroke="#A39E93" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 </button>
 
-<button style="min-height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; border: none; background: #23211E; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; cursor: pointer">
+<button style="min-height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; border: none; background: #23211E; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; cursor: pointer">
 <span>プライバシーポリシー</span>
 <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3 L11 8 L6 13" fill="none" stroke="#A39E93" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 </button>
 
-<button style="min-height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; border: none; background: #23211E; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; cursor: pointer">
+<button style="min-height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-radius: 14px; border: none; background: #23211E; color: #F2EDE4; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14px; cursor: pointer">
 <span>利用規約</span>
 <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3 L11 8 L6 13" fill="none" stroke="#A39E93" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 </button>
@@ -55,9 +65,10 @@ a{color:#F2EDE4}a:hover{color:#FFFFFF}
 
 <div style="margin-top: auto; text-align: center; font-size: 12px; color: #A39E93">バージョン [x.x.x]</div>
 
+
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":844,"height":390}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
   renderVals() {
     const st = this.state || {};
