@@ -11,7 +11,7 @@
 
 ## 技術
 
-- Swift / SwiftUI、iOS 17.2 以上、iPhone のみ、**撮影画面だけ横向き、ほかの画面は縦向き**
+- Swift / SwiftUI、iOS 17.2 以上、iPhone のみ、**撮影画面だけ横向き（音量ボタン側が上の Landscape Left）、ほかの画面は縦向き**
 - AVFoundation（`AVCaptureEventInteraction` で音量ボタンのシャッター）
 - Core Motion（「横にして構える」画面で本体の向きを判定）
 - SceneKit（立体のカメラ）

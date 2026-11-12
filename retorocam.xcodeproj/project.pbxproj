@@ -6,14 +6,52 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FCB56C0730A0B5D000E2CF92 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = FCB56C0530A0B5D000E2CF92 /* GoogleMobileAds */; };
+		FCB56C0830A0B5D000E2CF92 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = FCB56C0630A0B5D000E2CF92 /* GoogleUserMessagingPlatform */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FCB56B9930A0B5C700E2CF92 /* retorocam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = retorocam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCB56C0130A0B5D000E2CF92 /* RetoroCam.storekit */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstorekit; path = RetoroCam.storekit; sourceTree = "<group>"; };
+		FCB56C0230A0B5D000E2CF92 /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = App.xcconfig; path = Config/App.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FCB56C0B30A0B5D000E2CF92 /* Exceptions for "Fonts" folder in "retorocam" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				README.md,
+			);
+			target = FCB56B9830A0B5C700E2CF92 /* retorocam */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FCB56B9B30A0B5C700E2CF92 /* retorocam */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = retorocam;
+			sourceTree = "<group>";
+		};
+		FCB56BB030A0B5C700E2CF92 /* LUTs */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			name = LUTs;
+			path = Resources/LUTs;
+			sourceTree = "<group>";
+		};
+		FCB56C0930A0B5D000E2CF92 /* Fonts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FCB56C0B30A0B5D000E2CF92 /* Exceptions for "Fonts" folder in "retorocam" target */,
+			);
+			name = Fonts;
+			path = Resources/Fonts;
+			sourceTree = "<group>";
+		};
+		FCB56C0A30A0B5D000E2CF92 /* Sounds */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			name = Sounds;
+			path = Resources/Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB56C0730A0B5D000E2CF92 /* GoogleMobileAds in Frameworks */,
+				FCB56C0830A0B5D000E2CF92 /* GoogleUserMessagingPlatform in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +72,12 @@
 		FCB56B9030A0B5C700E2CF92 = {
 			isa = PBXGroup;
 			children = (
+				FCB56C0230A0B5D000E2CF92 /* App.xcconfig */,
+				FCB56C0130A0B5D000E2CF92 /* RetoroCam.storekit */,
 				FCB56B9B30A0B5C700E2CF92 /* retorocam */,
+				FCB56BB030A0B5C700E2CF92 /* LUTs */,
+				FCB56C0930A0B5D000E2CF92 /* Fonts */,
+				FCB56C0A30A0B5D000E2CF92 /* Sounds */,
 				FCB56B9A30A0B5C700E2CF92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,9 +107,14 @@
 			);
 			fileSystemSynchronizedGroups = (
 				FCB56B9B30A0B5C700E2CF92 /* retorocam */,
+				FCB56BB030A0B5C700E2CF92 /* LUTs */,
+				FCB56C0930A0B5D000E2CF92 /* Fonts */,
+				FCB56C0A30A0B5D000E2CF92 /* Sounds */,
 			);
 			name = retorocam;
 			packageProductDependencies = (
+				FCB56C0530A0B5D000E2CF92 /* GoogleMobileAds */,
+				FCB56C0630A0B5D000E2CF92 /* GoogleUserMessagingPlatform */,
 			);
 			productName = retorocam;
 			productReference = FCB56B9930A0B5C700E2CF92 /* retorocam.app */;
@@ -86,14 +136,19 @@
 				};
 			};
 			buildConfigurationList = FCB56B9430A0B5C700E2CF92 /* Build configuration list for PBXProject "retorocam" */;
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				ja,
 				en,
 				Base,
 			);
 			mainGroup = FCB56B9030A0B5C700E2CF92;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FCB56C0330A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				FCB56C0430A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FCB56B9A30A0B5C700E2CF92 /* Products */;
 			projectDirPath = "";
@@ -178,7 +233,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -236,7 +291,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -248,6 +303,7 @@
 		};
 		FCB56BA530A0B5CA00E2CF92 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCB56C0230A0B5D000E2CF92 /* App.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -256,12 +312,14 @@
 				DEVELOPMENT_TEAM = MTKQF6BU66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "写真を撮るためにカメラを使います。";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "届いた写真を写真アプリに保存します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -285,6 +343,7 @@
 		};
 		FCB56BA630A0B5CA00E2CF92 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCB56C0230A0B5D000E2CF92 /* App.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -293,12 +352,14 @@
 				DEVELOPMENT_TEAM = MTKQF6BU66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "写真を撮るためにカメラを使います。";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "届いた写真を写真アプリに保存します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -342,6 +403,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FCB56C0330A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.12.0;
+			};
+		};
+		FCB56C0430A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FCB56C0530A0B5D000E2CF92 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCB56C0330A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		FCB56C0630A0B5D000E2CF92 /* GoogleUserMessagingPlatform */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCB56C0430A0B5D000E2CF92 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */;
+			productName = GoogleUserMessagingPlatform;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FCB56B9130A0B5C700E2CF92 /* Project object */;
 }

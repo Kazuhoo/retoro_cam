@@ -1,6 +1,6 @@
 # 書体
 
-カメラ名と日付に使う書体です。どれも Google Fonts で配布されている SIL Open Font License（OFL）の書体で、アプリに同梱できます。
+カメラ名と日付に使う書体です。どれも Google Fonts で配布されている書体で、アプリに同梱できます。ライセンスは SIL Open Font License（OFL）で、Special Elite だけ Apache License 2.0 です。
 
 | 用途 | 書体 | 入手先 |
 |---|---|---|
@@ -14,6 +14,6 @@
 
 1. 上のページから .ttf をダウンロードして、このフォルダに置く
 2. Xcode のプロジェクトに追加し、Info.plist の `UIAppFonts`（Fonts provided by application）に登録する
-3. 各書体の `OFL.txt` も一緒に置き、設定画面などからライセンスを見られるようにする
+3. 各書体のライセンスを `<書体名>-LICENSE.txt` として一緒に置く（設定の「ライセンス」で表示する）
 
 日本語の本文は、システム書体（ヒラギノ角ゴ）でも問題ありません。アプリのサイズを抑えたいならシステム書体を使ってください。

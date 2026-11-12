@@ -23,20 +23,20 @@ a{color:#F2EDE4}a:hover{color:#F2EDE4}
 @keyframes turn{0%,18%{transform:rotate(0deg)}52%,82%{transform:rotate(-90deg)}100%{transform:rotate(0deg)}}
 </style>
 </helmet>
-<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 20px 34px; background: #1C1B19; font-family: 'Zen Kaku Gothic New', sans-serif; color: #F2EDE4; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden;">
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 56px 20px 34px; background: radial-gradient(ellipse 120% 55% at 50% 42%, rgba(240,138,36,0.16) 0%, rgba(240,138,36,0.05) 45%, rgba(240,138,36,0) 75%), radial-gradient(ellipse 90% 30% at 50% 0%, rgba(247,210,74,0.10) 0%, rgba(247,210,74,0) 100%), url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27160%27%20height%3D%27160%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.9%27%20numOctaves%3D%272%27%20seed%3D%2721%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.1%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E), url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27160%27%20height%3D%27160%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.6%27%20numOctaves%3D%273%27%20seed%3D%2722%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.3%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E), linear-gradient(180deg, #23201C 0%, #1C1B19 40%, #171614 100%); font-family: 'Zen Kaku Gothic New', sans-serif; color: #F2EDE4; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden;">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; display: flex; flex-direction: column; pointer-events: none"><div style="height: 5px; background: #F7D24A"></div><div style="height: 5px; background: #EE8A2B"></div><div style="height: 5px; background: #D9452B"></div><div style="height: 1px; background: rgba(0,0,0,0.4)"></div></div>
 <div style="display: flex; align-items: center; justify-content: space-between; min-height: 44px">
-<div style="font-family: 'VT323', monospace; font-size: 24px; letter-spacing: 0.08em; color: #C9C3B8">[アプリ名]</div>
-<div style="display: flex; align-items: center; gap: 8px">
-<a href="CameraShop.dc.html" style="display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 22px; background: #2B2925; color: #F2EDE4; font-size: 13px; text-decoration: none;"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h4l2-3h6l2 3h4v11H3z" fill="none" stroke="#F2EDE4" stroke-width="1.6" stroke-linejoin="round"></path><circle cx="12" cy="13" r="3.5" fill="none" stroke="#F2EDE4" stroke-width="1.6"></circle></svg><span>カメラを見る</span></a>
-<a href="Settings.dc.html" aria-label="設定" style="width: 44px; height: 44px; border-radius: 22px; background: #2B2925; display: flex; align-items: center; justify-content: center; text-decoration: none"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="#F2EDE4" stroke-width="1.6"></circle><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M5.5 18.5l1.8-1.8M16.7 7.3l1.8-1.8" fill="none" stroke="#F2EDE4" stroke-width="1.6" stroke-linecap="round"></path></svg></a>
-</div>
-</div>
 
-<div style="border-radius: 18px; background: #23211E; padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 12px; color: #A39E93">使用中のカメラ</div>
-<div style="display: flex; justify-content: center">
-<div onPointerDown="{{ct.start}}" onPointerMove="{{ct.move}}" onPointerUp="{{ct.end}}" onPointerCancel="{{ct.end}}" role="img" aria-label="使用中のカメラ（指でなぞると回せます）" style="width: 270px; height: 171px; position: relative; flex-shrink: 0; touch-action: none; cursor: grab;">
-<div style="position: absolute; left: 0; top: 0; width: 300px; height: 190px; transform: scale(0.9000); transform-origin: top left">
+<div style="display: flex; align-items: center; gap: 8px">
+<a href="CameraShop.dc.html" style="display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 22px; background: #2E2B26; box-shadow: inset 0 1px 0 rgba(255,236,210,0.10), 0 0 0 1px rgba(240,138,36,0.18); color: #F2EDE4; font-size: 13px; text-decoration: none;"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h4l2-3h6l2 3h4v11H3z" fill="none" stroke="#F2EDE4" stroke-width="1.6" stroke-linejoin="round"></path><circle cx="12" cy="13" r="3.5" fill="none" stroke="#F2EDE4" stroke-width="1.6"></circle></svg><span>カメラを見る</span></a>
+<a href="Settings.dc.html" aria-label="設定" style="width: 44px; height: 44px; border-radius: 22px; background: #2E2B26; box-shadow: inset 0 1px 0 rgba(255,236,210,0.10), 0 0 0 1px rgba(240,138,36,0.18); display: flex; align-items: center; justify-content: center; text-decoration: none"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="#F2EDE4" stroke-width="1.6"></circle><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M5.5 18.5l1.8-1.8M16.7 7.3l1.8-1.8" fill="none" stroke="#F2EDE4" stroke-width="1.6" stroke-linecap="round"></path></svg></a>
+</div>
+</div>
+<sc-if value="{{isCam}}" hint-placeholder-val="{{ true }}">
+<div style="flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; animation: popin 0.42s cubic-bezier(.2,1.3,.4,1) both">
+<div style="font-size: 12px; font-weight: 700; color: #F0A85A; letter-spacing: 0.14em">使用中のカメラ</div>
+<div onPointerDown="{{ct.start}}" onPointerMove="{{ct.move}}" onPointerUp="{{ct.end}}" onPointerCancel="{{ct.end}}" role="img" aria-label="使用中のカメラ（指でなぞると回せます）" style="width: 330px; height: 209px; position: relative; flex-shrink: 0; touch-action: none; cursor: grab;">
+<div style="position: absolute; left: 0; top: 0; width: 300px; height: 190px; transform: scale(1.1000); transform-origin: top left">
 <div aria-hidden="true" style="position: absolute; left: 60.0px; top: 166.0px; width: 180px; height: 20px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 70%)"></div>
 <div aria-hidden="true" style="position: absolute; left: 40.0px; top: 28.0px; width: 220px; height: 122px; perspective: 800px">
 <div style="position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX({{ct.rx}}) rotateY({{ct.ry}}); transition: {{ct.tr}}">
@@ -45,27 +45,49 @@ a{color:#F2EDE4}a:hover{color:#F2EDE4}
 <div style="position: absolute; left: 10px; top: 34px; font-family: {{c.font}}; font-size: 15px; line-height: 1.2; color: rgba(255,255,255,0.92); text-shadow: 0 1px 0 rgba(0,0,0,0.35); white-space: nowrap">{{c.name}}</div>
 <div style="position: absolute; left: 10px; top: 60px; font-family: 'VT323', monospace; font-size: 14px; color: rgba(255,255,255,0.85)">24 EXP</div>
 <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 18px; display: flex; flex-direction: column"><sc-for list="{{c.stripes}}" as="s" hint-placeholder-count="2"><div style="height: 4px; background: {{s.c}}"></div></sc-for><div style="flex: 1; background: {{c.band}}"></div></div>
+<div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.8%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.25%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); mix-blend-mode: multiply; pointer-events: none"></div>
 </div>
 <div style="position: absolute; left: 12px; top: 12px; width: 30px; height: 20px; border-radius: 5px; background: #050505; box-shadow: 0 0 0 3px #1A1A1A, inset 0 0 6px rgba(70,90,110,0.5)"></div>
 <div style="position: absolute; left: 14px; top: 44px; width: 22px; height: 14px; border-radius: 3px; background: #050505; box-shadow: 0 0 0 2px #2A2A2A; font-family: 'VT323', monospace; font-size: 12px; line-height: 14px; text-align: center; color: #F2EDE4">24</div>
+<div style="position: absolute; inset: 0; border-radius: 10px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.4%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.5%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); mix-blend-mode: multiply; pointer-events: none"></div>
 </div>
-<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 0; top: 31.0px; width: 220px; height: 60px; border-radius: 6px; transform: rotateX(-90deg) translateZ(61.0px); background: #0A0A0A"></div>
-<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 80.0px; top: 0; width: 60px; height: 122px; border-radius: 6px; transform: rotateY(-90deg) translateZ(110.0px); background: repeating-linear-gradient(0deg, #1A1A1A 0px, #1A1A1A 2px, #0B0B0B 2px, #0B0B0B 4px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1)"></div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 0; top: 31.0px; width: 220px; height: 60px; border-radius: 6px; transform: rotateX(-90deg) translateZ(61.0px); background: #0A0A0A">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.4%27%20numOctaves%3D%272%27%20seed%3D%270%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.5%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); pointer-events: none; mix-blend-mode: multiply;"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.1%27%20numOctaves%3D%272%27%20seed%3D%270%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.32%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); pointer-events: none; opacity: 0.35;"></div>
+</div>
+<div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 80.0px; top: 0; width: 60px; height: 122px; border-radius: 6px; transform: rotateY(-90deg) translateZ(110.0px); background: repeating-linear-gradient(0deg, #1A1A1A 0px, #1A1A1A 2px, #0B0B0B 2px, #0B0B0B 4px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1)">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.4%27%20numOctaves%3D%272%27%20seed%3D%270%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.5%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); pointer-events: none; mix-blend-mode: multiply;"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.1%27%20numOctaves%3D%272%27%20seed%3D%270%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.32%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); pointer-events: none; opacity: 0.35;"></div>
+</div>
 <div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 80.0px; top: 0; width: 60px; height: 122px; border-radius: 6px; transform: rotateY(90deg) translateZ(110.0px); background: linear-gradient(90deg, #0E0E0E 0%, #1B1B1B 50%, #0E0E0E 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12)">
 <div style="position: absolute; left: 10px; right: 10px; top: 50px; height: 22px; border-radius: 3px; background: #090909"></div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.4%27%20numOctaves%3D%272%27%20seed%3D%270%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.5%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); pointer-events: none; mix-blend-mode: multiply;"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.1%27%20numOctaves%3D%272%27%20seed%3D%270%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.32%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); pointer-events: none; opacity: 0.35;"></div>
 </div>
 <div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 0; top: 31.0px; width: 220px; height: 60px; border-radius: 6px; transform: rotateX(90deg) translateZ(61.0px); background: linear-gradient(180deg, #2E2E2E 0%, #222222 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08)">
 <div style="position: absolute; right: 30px; top: 18px; width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #5A5A5A 0%, #2A2A2A 60%, #111111 100%); box-shadow: 0 0 0 3px #161616"></div>
 <div style="position: absolute; right: 70px; top: 0; width: 38px; height: 14px; border-radius: 0 0 4px 4px; background: repeating-linear-gradient(90deg, #3A3A3A 0px, #3A3A3A 2px, #151515 2px, #151515 4px)"></div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.4%27%20numOctaves%3D%272%27%20seed%3D%270%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.5%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); pointer-events: none; mix-blend-mode: multiply;"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.1%27%20numOctaves%3D%272%27%20seed%3D%270%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.32%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); pointer-events: none; opacity: 0.35;"></div>
 </div>
 <div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 0; top: 0; width: 220px; height: 122px; border-radius: 10px; transform: translateZ(30.0px); background: linear-gradient(180deg, #3C3C3C 0%, #1E1E1E 16%, #131313 78%, #0A0A0A 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -2px 3px rgba(0,0,0,0.6)">
 <div style="position: absolute; left: 6px; top: 12px; bottom: 12px; width: 26px; border-radius: 8px; background: repeating-linear-gradient(90deg, #242424 0px, #242424 2px, #0B0B0B 2px, #0B0B0B 4px); box-shadow: inset 0 0 6px rgba(0,0,0,0.85)"></div>
 <div style="position: absolute; left: 38px; right: 54px; top: 6px; bottom: 6px; border-radius: 4px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 26%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.2) 100%), {{c.body}}; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3)">
 <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 24px; display: flex; flex-direction: column"><sc-for list="{{c.stripes}}" as="s" hint-placeholder-count="2"><div style="height: 4px; background: {{s.c}}"></div></sc-for><div style="flex: 1; background: {{c.band}}"></div></div>
+<div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.8%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.25%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); mix-blend-mode: multiply; pointer-events: none"></div>
 </div>
 <div style="position: absolute; left: 70px; top: 16px; width: 66px; height: 66px; border-radius: 50%; background: radial-gradient(circle, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 72%)"></div>
 <div style="position: absolute; right: 64px; top: 12px; width: 24px; height: 17px; border-radius: 3px; background: linear-gradient(135deg, #3A4856 0%, #10161C 55%, #05080B 100%); box-shadow: 0 0 0 2px #0A0A0A, inset 0 1px 0 rgba(255,255,255,0.25)"></div>
 <div style="position: absolute; right: 10px; top: 12px; width: 36px; height: 26px; border-radius: 3px; background: repeating-linear-gradient(0deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 2px, rgba(120,120,110,0.35) 2px, rgba(120,120,110,0.35) 3px), linear-gradient(180deg, #F6F6F2 0%, #CFCFC6 100%); box-shadow: 0 0 0 2px #1E1E1E"></div>
+<div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 10px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.4%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.55%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); mix-blend-mode: multiply; opacity: 0.9; pointer-events: none"></div>
+<div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 10px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.1%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.35%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); opacity: 0.35; pointer-events: none"></div>
+<div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 10px; background: linear-gradient(105deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.10) 40%, rgba(255,255,255,0.03) 48%, rgba(255,255,255,0) 56%); pointer-events: none"></div>
+<div style="position: absolute; left: 0; right: 0; bottom: 2px; height: 1px; background: rgba(255,255,255,0.08)"></div>
+<div style="position: absolute; left: 160px; bottom: 6px; width: 7px; height: 7px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #9A9A94 0%, #4A4A46 55%, #1A1A18 100%); box-shadow: 0 0 0 1px #050505"><div style="position: absolute; left: 1px; right: 1px; top: 3px; height: 1px; background: #111; transform: rotate(35deg)"></div></div>
+<div style="position: absolute; left: 13px; bottom: 6px; width: 7px; height: 7px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #9A9A94 0%, #4A4A46 55%, #1A1A18 100%); box-shadow: 0 0 0 1px #050505"><div style="position: absolute; left: 1px; right: 1px; top: 3px; height: 1px; background: #111; transform: rotate(-20deg)"></div></div>
+<div style="position: absolute; left: 140px; top: 88px; font-family: 'VT323', monospace; font-size: 8px; letter-spacing: 0.12em; color: rgba(255,255,255,0.45)">35mm ・ F/10</div>
 </div>
 <div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 72px; top: 18px; width: 62px; height: 62px; border-radius: 50%; transform: translateZ(35.0px); background: radial-gradient(circle at 50% 50%, #262626 0%, #262626 52%, #060606 54%, #060606 62%, #2C2C2C 64%, #151515 100%); box-shadow: inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -2px 3px rgba(0,0,0,0.7)"></div>
 <div style="position: absolute; box-sizing: border-box; backface-visibility: hidden; left: 72px; top: 18px; width: 62px; height: 62px; border-radius: 50%; transform: translateZ(32.5px); background: #0C0C0C"></div>
@@ -75,24 +97,21 @@ a{color:#F2EDE4}a:hover{color:#F2EDE4}
 </div>
 </div>
 </div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+<div style="font-family: {{c.font}}; font-size: 30px; line-height: 1.2; white-space: nowrap">{{c.name}}</div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #A39E93"><span style="font-family: 'VT323', monospace; font-size: 18px">24 EXP</span><span>・</span><span>残り</span><span style="min-width: 42px; height: 30px; border-radius: 5px; background: #0E0D0C; box-shadow: inset 0 1px 4px rgba(0,0,0,0.8), 0 0 0 1.5px #3A3832; font-family: 'VT323', monospace; font-size: 26px; line-height: 30px; text-align: center; color: #F2EDE4">{{remainLabel}}</span></div>
 </div>
-<div style="display: flex; align-items: center; justify-content: space-between">
-<div style="font-family: {{c.font}}; font-size: 22px; line-height: 1.2; white-space: nowrap">{{c.name}}</div>
-<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #A39E93"><span>残り</span><span style="min-width: 38px; height: 26px; border-radius: 5px; background: #0E0D0C; box-shadow: inset 0 1px 4px rgba(0,0,0,0.8), 0 0 0 1.5px #3A3832; font-family: 'VT323', monospace; font-size: 22px; line-height: 26px; text-align: center; color: #F2EDE4">{{remainLabel}}</span></div>
+<sc-if value="{{canShoot}}" hint-placeholder-val="{{ true }}"><a href="Rotate.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 26px; background: #F08A24; color: #1C1B19; font-size: 16px; font-weight: 700; text-decoration: none; align-self: stretch;">撮る</a></sc-if>
+<sc-if value="{{isFull}}" hint-placeholder-val="{{ false }}"><a href="SendLab.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 26px; background: #F08A24; color: #1C1B19; font-size: 16px; font-weight: 700; text-decoration: none; align-self: stretch;">現像に出す</a></sc-if>
 </div>
-<sc-if value="{{canShoot}}" hint-placeholder-val="{{ true }}"><a href="Rotate.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 26px; background: #F08A24; color: #1C1B19; font-size: 16px; font-weight: 700; text-decoration: none;">撮る</a></sc-if>
-<sc-if value="{{isFull}}" hint-placeholder-val="{{ false }}"><a href="SendLab.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 26px; background: #F08A24; color: #1C1B19; font-size: 16px; font-weight: 700; text-decoration: none;">現像に出す</a></sc-if>
-</div>
-
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
-<div style="border-radius: 18px; background: #23211E; padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px">
-<div style="display: flex; align-items: center; justify-content: space-between">
-<div style="font-size: 12px; color: #A39E93">届いた封筒</div>
-<sc-if value="{{hasNew}}" hint-placeholder-val="{{ true }}"><div style="padding: 1px 8px; border-radius: 10px; background: #F08A24; color: #1C1B19; font-size: 11px; font-weight: 700">新着 {{newCount}}</div></sc-if>
-</div>
+</sc-if>
+<sc-if value="{{isEnv}}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; animation: popin 0.42s cubic-bezier(.2,1.3,.4,1) both">
+<div style="display: flex; align-items: center; gap: 8px"><span style="font-size: 12px; font-weight: 700; color: #F0A85A; letter-spacing: 0.14em">届いた封筒</span><sc-if value="{{hasNew}}" hint-placeholder-val="{{ true }}"><span style="padding: 1px 8px; border-radius: 10px; background: #F08A24; color: #1C1B19; font-size: 11px; font-weight: 700">新着 {{newCount}}</span></sc-if></div>
 <sc-if value="{{hasNew}}" hint-placeholder-val="{{ true }}">
-<a href="Prints.dc.html" aria-label="届いた封筒を開ける" style="display: flex; flex-direction: column; gap: 10px; text-decoration: none">
-<div style="height: 104px; position: relative">
+<a href="Prints.dc.html" aria-label="届いた封筒を開ける" style="display: flex; justify-content: center; text-decoration: none">
+<div style="width: 290px; height: 200px; position: relative">
+<div style="position: absolute; left: 0; top: 0; transform: scale(2); transform-origin: top left; width: 145px; height: 100px">
 <sc-if value="{{multi}}" hint-placeholder-val="{{ false }}"><div style="position: absolute; left: 14px; top: 4px; transform: rotate(-6deg)"><div style="width: 132px; height: 80px; flex-shrink: 0; border-radius: 6px; background: {{e2.body}}; position: relative; overflow: hidden; box-shadow: 0 6px 14px rgba(0,0,0,0.5)">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 35%, rgba(0,0,0,0.14) 100%), repeating-linear-gradient(35deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 3px), repeating-linear-gradient(-55deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 4px)"></div>
 <div style="position: absolute; left: 0; right: 0; top: 0; height: 26px; background: {{e2.flap}}; border-bottom: 1px solid rgba(0,0,0,0.25)"></div>
@@ -101,6 +120,14 @@ a{color:#F2EDE4}a:hover{color:#F2EDE4}
 <div style="height: 14px; background: {{e2.band}}"></div>
 </div>
 <div style="position: absolute; right: 8px; bottom: 26px; padding: 2px 6px; background: #F4EEE2; color: #3B3328; font-family: 'VT323', monospace; font-size: 12px; line-height: 1.1; white-space: nowrap"><span style="font-family: {{e2.font}}; font-size: 9px">{{e2.name}}</span> 24EXP</div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 26px; height: 6px; background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 26px; bottom: 18px; background: linear-gradient(28deg, rgba(0,0,0,0) 49.2%, rgba(0,0,0,0.10) 49.6%, rgba(255,255,255,0.10) 50.2%, rgba(0,0,0,0) 50.8%), linear-gradient(-28deg, rgba(0,0,0,0) 49.2%, rgba(0,0,0,0.10) 49.6%, rgba(255,255,255,0.10) 50.2%, rgba(0,0,0,0) 50.8%)"></div>
+<div aria-hidden="true" style="position: absolute; left: 8px; top: 8px; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; font-size: 7px; letter-spacing: 0.2em; color: rgba(0,0,0,0.38)">PHOTO PRINTS</div>
+<div aria-hidden="true" style="position: absolute; left: 8px; top: 15px; font-family: 'Zen Kurenaido', sans-serif; font-size: 7px; color: rgba(0,0,0,0.5)">お名前　　　様</div>
+<div aria-hidden="true" style="position: absolute; right: 10px; top: 4px; width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(160,30,20,0.55); color: rgba(160,30,20,0.6); font-size: 5px; line-height: 18px; text-align: center; transform: rotate(-12deg)">済</div>
+<div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27160%27%20height%3D%27160%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.7%27%20numOctaves%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.28%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); mix-blend-mode: multiply"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%272.2%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.18%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 6px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12), inset 0 0 8px rgba(0,0,0,0.25)"></div>
 </div></div></sc-if>
 <div style="position: absolute; left: 2px; top: 16px; transform: rotate(2deg)"><div style="width: 132px; height: 80px; flex-shrink: 0; border-radius: 6px; background: {{e.body}}; position: relative; overflow: hidden; box-shadow: 0 6px 14px rgba(0,0,0,0.5)">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 35%, rgba(0,0,0,0.14) 100%), repeating-linear-gradient(35deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 3px), repeating-linear-gradient(-55deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 4px)"></div>
@@ -110,17 +137,40 @@ a{color:#F2EDE4}a:hover{color:#F2EDE4}
 <div style="height: 14px; background: {{e.band}}"></div>
 </div>
 <div style="position: absolute; right: 8px; bottom: 26px; padding: 2px 6px; background: #F4EEE2; color: #3B3328; font-family: 'VT323', monospace; font-size: 12px; line-height: 1.1; white-space: nowrap"><span style="font-family: {{e.font}}; font-size: 9px">{{e.name}}</span> 24EXP</div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 26px; height: 6px; background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0))"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 26px; bottom: 18px; background: linear-gradient(28deg, rgba(0,0,0,0) 49.2%, rgba(0,0,0,0.10) 49.6%, rgba(255,255,255,0.10) 50.2%, rgba(0,0,0,0) 50.8%), linear-gradient(-28deg, rgba(0,0,0,0) 49.2%, rgba(0,0,0,0.10) 49.6%, rgba(255,255,255,0.10) 50.2%, rgba(0,0,0,0) 50.8%)"></div>
+<div aria-hidden="true" style="position: absolute; left: 8px; top: 8px; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; font-size: 7px; letter-spacing: 0.2em; color: rgba(0,0,0,0.38)">PHOTO PRINTS</div>
+<div aria-hidden="true" style="position: absolute; left: 8px; top: 15px; font-family: 'Zen Kurenaido', sans-serif; font-size: 7px; color: rgba(0,0,0,0.5)">お名前　　　様</div>
+<div aria-hidden="true" style="position: absolute; right: 10px; top: 4px; width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(160,30,20,0.55); color: rgba(160,30,20,0.6); font-size: 5px; line-height: 18px; text-align: center; transform: rotate(-12deg)">済</div>
+<div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27160%27%20height%3D%27160%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.7%27%20numOctaves%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.28%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); mix-blend-mode: multiply"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 6px; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%272.2%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.18%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 6px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12), inset 0 0 8px rgba(0,0,0,0.25)"></div>
 </div></div>
 </div>
-<div style="display: flex; align-items: center; justify-content: center; min-height: 40px; border-radius: 20px; background: #F2EDE4; color: #1C1B19; font-size: 14px; font-weight: 700">開ける</div>
-</a>
-</sc-if>
-<sc-if value="{{noNew}}" hint-placeholder-val="{{ false }}"><div style="height: 154px; display: flex; align-items: center; justify-content: center; border-radius: 10px; border: 1px dashed #4A473F; font-size: 12px; color: #A39E93">まだ届いていません</div></sc-if>
 </div>
-
-<a href="Album.dc.html" aria-label="アルバムをひらく" style="border-radius: 18px; background: #23211E; padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; text-decoration: none">
-<div style="display: flex; align-items: center; justify-content: space-between"><div style="font-size: 12px; color: #A39E93">アルバム</div><div style="font-family: 'VT323', monospace; font-size: 18px; color: #F2EDE4">{{albumCount}}枚</div></div>
-<div style="height: 104px; display: flex; align-items: center; justify-content: center"><div aria-hidden="true" style="width: 132px; height: 110px; position: relative; border-radius: 6px; overflow: hidden; background: linear-gradient(135deg, #BFD8F2 0%, #9FC4E8 55%, #8DB6E0 100%); box-shadow: 0 8px 16px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.4)">
+</a>
+<div style="font-size: 13px; color: #C9C3B8; text-align: center; line-height: 1.6"><span style="font-family: {{e.font}}">{{e.name}}</span> の24枚が届きました</div>
+<a href="Prints.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 26px; background: #F08A24; color: #1C1B19; font-size: 16px; font-weight: 700; text-decoration: none; align-self: stretch;">開ける</a>
+</sc-if>
+<sc-if value="{{noNew}}" hint-placeholder-val="{{ false }}"><div style="width: 290px; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px dashed #4A473F; font-size: 13px; color: #A39E93">まだ届いていません</div></sc-if>
+<div style="align-self: stretch; border-radius: 14px; background: linear-gradient(180deg, #2C2924 0%, #23211E 100%); box-shadow: inset 0 1px 0 rgba(255,236,210,0.07), 0 0 0 1px rgba(240,138,36,0.10); padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; font-size: 12px">
+<span style="color: #A39E93">現像中</span>
+<span style="color: #C9C3B8"><span style="font-family: Monoton, cursive; font-size: 11px">NITE 800</span> ・ あと18時間</span>
+</div>
+<div style="height: 5px; border-radius: 3px; background: #3A3832; overflow: hidden"><div style="width: 75%; height: 100%; background: #F08A24"></div></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{isAlbum}}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; animation: popin 0.42s cubic-bezier(.2,1.3,.4,1) both">
+<div style="font-size: 12px; font-weight: 700; color: #F0A85A; letter-spacing: 0.14em">アルバム</div>
+<a href="Album.dc.html" aria-label="アルバムをひらく" style="display: flex; justify-content: center; text-decoration: none; transform: rotate(-3deg)">
+<div style="width: 251px; height: 209px; position: relative">
+<div style="position: absolute; left: 0; top: 0; transform: scale(1.9); transform-origin: top left">
+<div aria-hidden="true" style="position: absolute; left: 5px; top: 5px; width: 132px; height: 110px; border-radius: 6px; background: #6F9BCB; box-shadow: 0 10px 18px rgba(0,0,0,0.55)"></div>
+<div aria-hidden="true" style="position: absolute; left: 3px; top: 2px; width: 131px; height: 109px; border-radius: 4px; background: repeating-linear-gradient(90deg, #F4F1E8 0px, #F4F1E8 1px, #CFCABD 1px, #CFCABD 2px); box-shadow: 1px 1px 0 #BDB7A9"></div>
+<div aria-hidden="true" style="width: 132px; height: 110px; position: relative; border-radius: 6px; overflow: hidden; background: linear-gradient(135deg, #BFD8F2 0%, #9FC4E8 55%, #8DB6E0 100%); box-shadow: 0 8px 16px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.4)">
 <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: linear-gradient(90deg, #7FA8D3, #A9C9EA); box-shadow: inset -1px 0 0 rgba(255,255,255,0.4)"></div>
 <div style="position: absolute; left: 30px; top: 18px; width: 30px; height: 30px; border-radius: 15px; background: rgba(255,255,255,0.45)"></div>
 <div style="position: absolute; left: 104px; top: 62px; width: 18px; height: 18px; border-radius: 9px; background: rgba(255,255,255,0.35)"></div>
@@ -128,26 +178,40 @@ a{color:#F2EDE4}a:hover{color:#F2EDE4}
 <div style="position: absolute; left: 22px; right: 8px; top: 40px; text-align: center; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.06em; color: #FFFFFF; text-shadow: 0 1px 0 #6E98C6, 1px 0 0 #6E98C6, -1px 0 0 #6E98C6, 0 -1px 0 #6E98C6">PHOTO ALBUM</div>
 <div style="position: absolute; left: 22px; right: 8px; top: 62px; text-align: center; font-family: 'Pacifico', cursive; font-size: 12px; color: #F27FA6">Happy Memories</div>
 <div style="position: absolute; left: 22px; right: 8px; top: 84px; text-align: center; font-size: 9px; color: #4E78A8; letter-spacing: 0.1em">L SIZE ・ 40 POCKETS</div>
+<div style="position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.18) 0px, rgba(255,255,255,0.18) 1px, rgba(0,0,0,0.06) 1px, rgba(0,0,0,0.06) 5px); box-shadow: inset -2px 0 2px rgba(40,70,110,0.35)"></div>
+<div style="position: absolute; left: 18px; top: 4px; right: 4px; bottom: 4px; border-radius: 4px; border: 1px dashed rgba(255,255,255,0.55); box-shadow: 0 1px 0 rgba(60,100,150,0.25)"></div>
+<div style="position: absolute; inset: 0; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27120%27%20height%3D%27120%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.6%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.3%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E); mix-blend-mode: multiply"></div>
+<div style="position: absolute; inset: 0; background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27160%27%20height%3D%27160%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.35%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.18%200%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E)"></div>
+<div style="position: absolute; left: 0; right: 0; top: 0; height: 40%; background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0))"></div>
+<div style="position: absolute; inset: 0; border-radius: 6px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 3px rgba(40,70,110,0.35), inset -1px 0 0 rgba(40,70,110,0.3)"></div>
 <div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(120deg, rgba(255,255,255,0) 35%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0) 55%)"></div>
-<div style="position: absolute; right: -6px; bottom: 6px; width: 46px; height: 46px; border-radius: 23px; background: #F4A23A; color: #FFFFFF; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; transform: rotate(-14deg); box-shadow: 0 1px 2px rgba(0,0,0,0.3)">サービス品</div>
-</div></div>
-<div style="display: flex; align-items: center; justify-content: center; min-height: 40px; border-radius: 20px; background: #2B2925; color: #F2EDE4; font-size: 14px; font-weight: 700">ひらく</div>
+
+</div>
+</div>
+</div>
 </a>
+<div style="display: flex; align-items: baseline; gap: 6px; font-size: 13px; color: #A39E93"><span style="font-family: 'VT323', monospace; font-size: 30px; color: #F2EDE4">{{albumCount}}</span><span>枚の写真</span></div>
+<a href="Album.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 26px; background: #F08A24; color: #1C1B19; font-size: 16px; font-weight: 700; text-decoration: none; align-self: stretch;">ひらく</a>
 </div>
-
-<div style="border-radius: 14px; background: #23211E; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
-<div style="display: flex; align-items: baseline; justify-content: space-between; font-size: 12px">
-<span style="color: #A39E93">現像中</span>
-<span style="color: #C9C3B8"><span style="font-family: Monoton, cursive; font-size: 11px">NITE 800</span> ・ あと18時間</span>
+</sc-if>
+<div role="tablist" style="display: flex; margin: 0 -8px; border-radius: 22px; background: linear-gradient(180deg, #2C2924 0%, #23211E 100%); box-shadow: inset 0 1px 0 rgba(255,236,210,0.07), 0 0 0 1px rgba(240,138,36,0.10); padding: 4px 4px">
+<button onClick="{{goCam}}" aria-label="カメラ" aria-pressed="{{pCam}}" style="flex: 1; min-height: 60px; border: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: {{colCam}}; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 11px; position: relative">
+<div style="width: 52px; height: 32px; border-radius: 16px; background: {{bgCam}}; display: flex; align-items: center; justify-content: center; position: relative"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h4l2-3h6l2 3h4v11H3z" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"></path><circle cx="12" cy="13" r="3.5" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"></circle></svg></div>
+<span>カメラ</span>
+</button>
+<button onClick="{{goEnv}}" aria-label="封筒" aria-pressed="{{pEnv}}" style="flex: 1; min-height: 60px; border: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: {{colEnv}}; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 11px; position: relative">
+<div style="width: 52px; height: 32px; border-radius: 16px; background: {{bgEnv}}; display: flex; align-items: center; justify-content: center; position: relative"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="1.5" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"></rect><path d="M3 10h18" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"></path></svg><sc-if value="{{hasNew}}" hint-placeholder-val="{{ true }}"><div style="position: absolute; right: 8px; top: 3px; width: 9px; height: 9px; border-radius: 5px; background: #F08A24; box-shadow: 0 0 0 2px #1C1B19"></div></sc-if></div>
+<span>封筒</span>
+</button>
+<button onClick="{{goAlb}}" aria-label="アルバム" aria-pressed="{{pAlb}}" style="flex: 1; min-height: 60px; border: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: {{colAlb}}; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 11px; position: relative">
+<div style="width: 52px; height: 32px; border-radius: 16px; background: {{bgAlb}}; display: flex; align-items: center; justify-content: center; position: relative"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="15" height="17" rx="1.5" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"></rect><path d="M3.5 7h3M3.5 12h3M3.5 17h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><rect x="9" y="8" width="8" height="5.5" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"></rect></svg></div>
+<span>アルバム</span>
+</button>
 </div>
-<div style="height: 5px; border-radius: 3px; background: #3A3832; overflow: hidden"><div style="width: 75%; height: 100%; background: #F08A24"></div></div>
-</div>
-
-<div style="flex: 1"></div>
 <div style="margin: 0 -20px; height: 50px; flex-shrink: 0; box-sizing: border-box; background: #24221F; border-top: 1px dashed #4A473F; border-bottom: 1px dashed #4A473F; display: flex; align-items: center; justify-content: center; gap: 8px; color: #A39E93; font-size: 12px"><span style="padding: 1px 6px; border: 1px solid #8A847A; border-radius: 3px; font-size: 10px">AD</span><span>AdMob アダプティブバナー</span></div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"camera":{"editor":"enum","options":["sunshine","charcoal","pool","green","party"],"default":"sunshine"},"remaining":{"editor":"int","min":0,"max":24,"default":7},"newEnvelopes":{"editor":"int","min":0,"max":3,"default":1},"$preview":{"width":390,"height":844}}'>
+<script type="text/x-dc" data-dc-script data-props='{"camera":{"editor":"enum","options":["sunshine","charcoal","pool","green","party"],"default":"sunshine"},"remaining":{"editor":"int","min":0,"max":24,"default":7},"newEnvelopes":{"editor":"int","min":0,"max":3,"default":1},"tab":{"editor":"enum","options":["camera","envelope","album"],"default":"camera"},"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
   renderVals() {
     const st = this.state || {};
@@ -194,12 +258,20 @@ class Component extends DCLogic {
     const c = wrap(CAMS[this.props.camera] || CAMS.sunshine);
     const rem = this.props.remaining == null ? 7 : this.props.remaining;
     const n = this.props.newEnvelopes == null ? 1 : this.props.newEnvelopes;
+    const tab = st.tab || this.props.tab || 'camera';
     return {
       c: c, e: wrap(ENV.pool), e2: wrap(ENV.sunshine),
       remainLabel: (rem < 10 ? '0' : '') + rem,
       canShoot: rem > 0, isFull: rem <= 0,
       hasNew: n > 0, noNew: n <= 0, newCount: n, multi: n > 1,
       albumCount: 52,
+      isCam: tab === 'camera', isEnv: tab === 'envelope', isAlbum: tab === 'album',
+      goCam: function () { self.setState({ tab: 'camera' }); },
+      goEnv: function () { self.setState({ tab: 'envelope' }); },
+      goAlb: function () { self.setState({ tab: 'album' }); },
+      pCam: String(tab === 'camera'), pEnv: String(tab === 'envelope'), pAlb: String(tab === 'album'),
+      colCam: tab === 'camera' ? '#F08A24' : '#A39E93', colEnv: tab === 'envelope' ? '#F08A24' : '#A39E93', colAlb: tab === 'album' ? '#F08A24' : '#A39E93',
+      bgCam: tab === 'camera' ? '#3A2A18' : 'transparent', bgEnv: tab === 'envelope' ? '#3A2A18' : 'transparent', bgAlb: tab === 'album' ? '#3A2A18' : 'transparent',
       ct: tiltApi('home')
     };
   }

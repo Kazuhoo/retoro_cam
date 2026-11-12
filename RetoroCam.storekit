@@ -1,0 +1,133 @@
+{
+  "appPolicies": {
+    "eula": "",
+    "policies": [
+      {
+        "locale": "en_US",
+        "policyText": "",
+        "policyURL": ""
+      }
+    ]
+  },
+  "identifier": "7C1E4D52",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6700000001",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ NOIR 1600",
+          "displayName": "NOIR 1600",
+          "locale": "ja_JP"
+        },
+        {
+          "description": "Disposable camera NOIR 1600",
+          "displayName": "NOIR 1600",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.noir1600",
+      "referenceName": "NOIR 1600",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6700000002",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ SPLASH 200",
+          "displayName": "SPLASH 200",
+          "locale": "ja_JP"
+        },
+        {
+          "description": "Disposable camera SPLASH 200",
+          "displayName": "SPLASH 200",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.splash200",
+      "referenceName": "SPLASH 200",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6700000003",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ ALBUM 100",
+          "displayName": "ALBUM 100",
+          "locale": "ja_JP"
+        },
+        {
+          "description": "Disposable camera ALBUM 100",
+          "displayName": "ALBUM 100",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.album100",
+      "referenceName": "ALBUM 100",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6700000004",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ NITE 800",
+          "displayName": "NITE 800",
+          "locale": "ja_JP"
+        },
+        {
+          "description": "Disposable camera NITE 800",
+          "displayName": "NITE 800",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.nite800",
+      "referenceName": "NITE 800",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "6700000005",
+      "localizations": [
+        {
+          "description": "使い捨てカメラ 4台セット",
+          "displayName": "4台セット",
+          "locale": "ja_JP"
+        },
+        {
+          "description": "Disposable camera 4台セット",
+          "displayName": "4 Camera Set",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.kazuho.retorocam.camera.bundle4",
+      "referenceName": "4台セット",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_askToBuyEnabled": false,
+    "_billingGracePeriodEnabled": false,
+    "_billingIssuesEnabled": false,
+    "_disableDialogs": false,
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_renewalBillingIssuesEnabled": false,
+    "_storeKitErrors": [],
+    "_storefront": "USA",
+    "_timeRate": 0
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 4,
+    "minor": 0
+  }
+}
