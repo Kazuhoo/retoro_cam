@@ -1,5 +1,5 @@
 """
-使い捨てカメラアプリ 5台の色味のたたき台（3D LUT）を作るスクリプト。
+使い捨てカメラアプリ 6台の色味のたたき台（3D LUT）を作るスクリプト。
 
 - 出力: Resources/LUTs/<NAME>.cube（33x33x33, sRGBガンマ空間で入出力）
 - 粒子・周辺減光・ハレーション・光漏れ・日付はLUTではなく別処理（README参照）。
@@ -46,7 +46,7 @@ def soft_clip(x, knee=0.85):
     return np.where(x > knee, knee + (1 - knee) * (1 - np.exp(-over / (1 - knee))), x)
 
 # ------------------------------------------------------------------
-# 5台の色味
+# 6台の色味
 # ------------------------------------------------------------------
 
 def sunday400(rgb):
@@ -95,12 +95,22 @@ def nite800(rgb):
     rgb = saturate(rgb, 1.15)
     return rgb
 
+def rainy400(rgb):
+    # 90年代の雨の日と蛍光灯の部屋：青緑に寄る、色が浅い、黒が浮いたマット、ハイライトは少しクリーム色
+    rgb = rgb * np.array([0.89, 1.00, 0.97])                  # 赤を引いて緑〜シアン寄りに
+    c = curve([(0, 0.10), (0.25, 0.28), (0.5, 0.50), (0.75, 0.73), (1, 0.92)])
+    rgb = c(rgb)
+    rgb = split_tone(rgb, shadow=[-0.04, 0.025, 0.02], highlight=[0.012, 0.014, -0.012])
+    rgb = saturate(rgb, 0.62)
+    return rgb
+
 LOOKS = {
     'SUNDAY_400': sunday400,
     'NOIR_1600': noir1600,
     'SPLASH_200': splash200,
     'ALBUM_100': album100,
     'NITE_800': nite800,
+    'RAINY_400': rainy400,
 }
 
 def build_lut(fn, n=N):

@@ -7,7 +7,7 @@
 - `docs/spec.md` — 仕様のすべて。**この文書が正**。書かれていないことを決める必要が出たら、実装する前に確認すること
 - `docs/mockups/*.dc.html` — 各画面のモックアップ（HTML）。レイアウト・色・文言の参考。対応表は spec.md の「画面一覧」
 - `docs/reference/FilmLook.swift` — 写真の加工処理のたたき台（未ビルド）
-- `Resources/LUTs/*.cube` — 5台分の色味。`tools/looks/README.md` に加工の数値
+- `Resources/LUTs/*.cube` — 6台分の色味。`tools/looks/README.md` に加工の数値
 
 ## 技術
 

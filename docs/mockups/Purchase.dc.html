@@ -8,7 +8,7 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;family=Zen+Kurenaido&amp;family=VT323&amp;family=Shrikhand&amp;family=Special+Elite&amp;family=Pacifico&amp;family=DM+Serif+Display:ital@0;1&amp;family=Monoton&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&amp;family=Zen+Kurenaido&amp;family=VT323&amp;family=Shrikhand&amp;family=Special+Elite&amp;family=Pacifico&amp;family=DM+Serif+Display:ital@0;1&amp;family=Monoton&amp;family=Major+Mono+Display&amp;display=swap">
 <style>
 body{margin:0}
 a{color:#1C1B19}a:hover{color:#1C1B19}
@@ -264,7 +264,7 @@ a{color:#1C1B19}a:hover{color:#1C1B19}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"midRoll":{"editor":"boolean","default":false},"onBack":{"editor":null},"onBought":{"editor":null},"camera":{"editor":"enum","options":["charcoal","pool","green","party"],"default":"party"},"$preview":{"width":390,"height":844}}'>
+<script type="text/x-dc" data-dc-script data-props='{"midRoll":{"editor":"boolean","default":false},"onBack":{"editor":null},"onBought":{"editor":null},"camera":{"editor":"enum","options":["charcoal","pool","green","party","rainy"],"default":"party"},"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
   renderVals() {
     const st = this.state || {};
@@ -300,7 +300,8 @@ class Component extends DCLogic {
       charcoal: { name: 'NOIR 1600', font: 'Special Elite, monospace', desc: '粒子の粗い、70年代のモノクロ。路地裏や報道写真のような、黒の締まった写り。', body: '#2A2825', band: '#1A1917', packText: '#F2EDE4', stripes: ['#F08A24'], s: [['#A0A0A0', '#141414'], ['#7E7E7E', '#101010'], ['#B8B8B8', '#1A1A1A']] },
       pool: { name: 'SPLASH 200', font: 'Pacifico, cursive', desc: '明るく青みがかった、夏の色。海やプールなど、晴れた日の屋外に。', body: '#2E5FB4', band: '#9CCBEA', packText: '#FFFFFF', stripes: ['#F4F1E6'], s: [['#C4E0E8', '#5A8496'], ['#B4D8E2', '#4E7A8C'], ['#D2E6E4', '#6A8E96']] },
       green: { name: 'ALBUM 100', font: 'DM Serif Display, serif', desc: '少し色あせた、80年代の家族アルバム。肌がやわらかく写ります。', body: '#3F8A45', band: '#161616', packText: '#FFFFFF', stripes: ['#F4F1E6', '#C8352B'], s: [['#A3AE8E', '#454C3A'], ['#B2A88E', '#4C463A'], ['#94A68C', '#3E4A3A']] },
-      party: { name: 'NITE 800', font: 'Monoton, cursive', desc: 'フラッシュで夜を撮る。被写体が白く光り、背景は暗く沈む、90年代の飲み会の写真。', body: '#151515', band: '#2A2A2A', packText: '#F7E9F1', stripes: ['#FF4FA3'], s: [['#F0C2B0', '#080808'], ['#E8A8A0', '#050505'], ['#F4D0C0', '#0A0A0A']] }
+      party: { name: 'NITE 800', font: 'Monoton, cursive', desc: 'フラッシュで夜を撮る。被写体が白く光り、背景は暗く沈む、90年代の飲み会の写真。', body: '#151515', band: '#2A2A2A', packText: '#F7E9F1', stripes: ['#FF4FA3'], s: [['#F0C2B0', '#080808'], ['#E8A8A0', '#050505'], ['#F4D0C0', '#0A0A0A']] },
+      rainy: { name: 'RAINY 400', font: "'Major Mono Display', monospace", desc: '雨の日と、蛍光灯の部屋。青緑に寄った浅い色と、黒の浮いたマットな仕上がりの、90年代の写り。', body: '#4F7F7A', band: '#253E3C', packText: '#F4F1E6', stripes: ['#EAD9A0', '#9CC4BC'], s: [['#A7B8B0', '#3C4A47'], ['#B6BFB4', '#46524E'], ['#9AAEA8', '#34423F']] }
     };
     const c0 = CAMS[this.props.camera] || CAMS.party;
     const c = Object.assign({}, c0, {

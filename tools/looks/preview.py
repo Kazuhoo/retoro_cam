@@ -81,6 +81,7 @@ FX = {
     'SPLASH_200': dict(grain=0.020, size=1.2, vignette=0.18),
     'ALBUM_100':  dict(grain=0.016, size=1.0, vignette=0.30),
     'NITE_800':   dict(grain=0.045, size=1.7, vignette=0.42),
+    'RAINY_400':  dict(grain=0.034, size=1.5, vignette=0.12),
 }
 
 def add_fx(img, grain, size, vignette, mono=False):
@@ -117,11 +118,11 @@ if __name__ == '__main__':
         pil = date_stamp(Image.fromarray((out * 255).astype(np.uint8)))
         tiles.append((name.replace('_', ' '), pil))
     tw, th = 512, 341; pad = 24; lab = 34
-    sheet = Image.new('RGB', (3 * tw + 4 * pad, 2 * (th + lab) + 3 * pad), (28, 27, 25))
+    sheet = Image.new('RGB', (4 * tw + 5 * pad, 2 * (th + lab) + 3 * pad), (28, 27, 25))
     font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 20)
     d = ImageDraw.Draw(sheet)
     for i, (label, im) in enumerate(tiles):
-        r, c = divmod(i, 3)
+        r, c = divmod(i, 4)
         x = pad + c * (tw + pad); y = pad + r * (th + lab + pad)
         d.text((x, y), label, font=font, fill=(242, 237, 228))
         sheet.paste(im.resize((tw, th), Image.LANCZOS), (x, y + lab))
