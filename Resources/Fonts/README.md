@@ -9,6 +9,7 @@
 | SPLASH 200 | Pacifico | https://fonts.google.com/specimen/Pacifico |
 | ALBUM 100 | DM Serif Display | https://fonts.google.com/specimen/DM+Serif+Display |
 | NITE 800 | Monoton | https://fonts.google.com/specimen/Monoton |
+| RAINY 400 | Major Mono Display | https://fonts.google.com/specimen/Major+Mono+Display |
 | 24EXP・残り枚数・日付など | VT323 | https://fonts.google.com/specimen/VT323 |
 | 日本語の本文 | Zen Kaku Gothic New（モックアップで使用） | https://fonts.google.com/specimen/Zen+Kaku+Gothic+New |
 
